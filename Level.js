@@ -15,10 +15,8 @@ function initLevel(){
 
 	p.obj.position.x = 5;
 	p.camera.position.x = 5;
-
-	
 }
-
+var tick = 0;
 function generateLevel(){
 	//generateFloor();
 	generateChunks(10);
@@ -35,22 +33,20 @@ function generateLight(){
 	scene.add(lights.point2);
 }
 
-var tick = 0;
+
 function updateLevel(){
 	p.update();
 	updateAudio();
 	updateLights();
 	updateGeneration();
-	//if(tick % 30 == 0) generateChunk(true);
+	if(tick % 30 == 0) generateChunk(true);
 	tick++;
 
-	//p.obj.position.x += 1 / 30;
-	//p.camera.position.x += 1 / 30;
+	p.obj.position.x += 1 / 30;
+	p.camera.position.x += 1 / 30;
 
-	//lights.point1.position.x +=  1 / 30;
-	//lights.point2.position.x += 1 / 30;
-
-	p.collision(loadedGeometry);
+	lights.point1.position.x +=  1 / 30;
+	lights.point2.position.x += 1 / 30;
 }
 
 function updateLights(){
