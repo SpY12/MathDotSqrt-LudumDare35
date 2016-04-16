@@ -10,7 +10,7 @@ function initAudio(){
     audioElement.src = 'res/audio/music/auckland.wav';
     audioElement.controls = true;
     audioElement.loop = true;
-    audioElement.autoplay = true;
+    audioElement.autoplay = false;
     audioElement.type = type="audio/wav";
     audioElement.crossOrigin = "anonymous";
 
@@ -21,7 +21,7 @@ function initAudio(){
 	audioSrc.connect(analyser);
 	audioSrc.connect(audioCtx.destination);
 
-	//audioElement.play();
+	audioElement.play();
 }
 
 function updateAudio(){
