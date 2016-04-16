@@ -52,17 +52,9 @@ var count = 0;
 function animate(){
 	DELTA = clock.getDelta();
 	
-    setTimeout(function() {
         stats.begin();
         requestAnimationFrame(animate);
         update();
     	renderer.render(scene, getCamera());
     	stats.end();
-    }, 1000 / 120);
-	
-
-    
-
-	
-	
 }
