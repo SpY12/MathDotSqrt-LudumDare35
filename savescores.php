@@ -23,15 +23,24 @@ if(isset($_POST['name']) && isset($_POST['score'])) {
      }
 }
 
+$sql="SELECT * FROM scores ORDER BY score DESC LIMIT 10";
+$result = mysql_query($sql);
+$records = array();
+
+while($rows=mysql_fetch_array($result)){
+    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']);
+}
+file_put_contents("top10Scores.json", json_encode($records));
+
 $sql = "SELECT * FROM $tbl_name ORDER BY date_time DESC";
 $result = mysql_query($sql);
 $records = array();
 
 while($rows=mysql_fetch_array($result)){
-    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']); //Move this to new php file with a handler every 30 secs or 1 min
+    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']);
 }
- 
-file_put_contents("data.json", json_encode($records)); //def add a timeout on this nigga
+
+file_put_contents("scores.json", json_encode($records));
 
 mysql_close($dblink);//Close off the MySQL connection to save resources.
 header('Location: index.html');
