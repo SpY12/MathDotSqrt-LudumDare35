@@ -1,22 +1,27 @@
 function createText(text, x, y, z){
-	var loader = new THREE.FontLoader();
+	//loader.load('res/model/fonts/Pirulen_Regular.js', function(font){
+		var text3d = new THREE.TextGeometry( text, {
 
-	loader.load('res/model/fonts/helvetiker_regular.typeface.js', function(font){
-		var geometry = new THREE.TextGeometry(text, {
-			font: font,
-			size: 80
+			size: 30,
+			height: 30 / 4,
+			curveSegments: 2,
+			font: "helvetiker"
+
 		});
+
+		text3d.computeBoundingBox();
 
 		var material = new THREE.MeshBasicMaterial({
-			color: 0xFFFFFF
+			color: 0xFFFFFF,
+			side: THREE.DoubleSide
 		});
 
-		var text = new THREE.Mesh(geometry, material);
+		var text = new THREE.Mesh(text3d, material);
 
 		text.position.x = x;
 		text.position.y = y;
 		text.position.z = z;
 
 		scene.add(text);
-	});
+	//});
 }

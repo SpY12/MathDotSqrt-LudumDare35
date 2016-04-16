@@ -1,7 +1,7 @@
 var WIDTH, HEIGHT;
 var scene, camera, renderer;
 var clock, stats;
-
+var camera;
 function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
@@ -51,6 +51,7 @@ function animate(){
 
 	requestAnimationFrame(animate);
 	update();
+
 	renderer.render(scene, getCamera());
 
 	stats.end();
