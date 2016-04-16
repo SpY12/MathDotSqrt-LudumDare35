@@ -15,12 +15,11 @@ function initLevel(){
 
 	p.obj.position.x = 5;
 	p.camera.position.x = 5;
-
 }
 var tick = 0;
 function generateLevel(){
 	//generateFloor();
-	//generateChunks(10);
+	generateChunks(10);
 	generateLight();
 }
 
@@ -40,11 +39,11 @@ function updateLevel(){
 	updateAudio();
 	updateLights();
 	updateGeneration();
-	if(tick % 60 == 0) generateChunk();
+	if(tick % 30 == 0) generateChunk(true);
 	tick++;
 
-	p.obj.position.x += 1 / 600;
-	p.camera.position.x += 1 / 600;
+	p.obj.position.x += 1 / 30;
+	p.camera.position.x += 1 / 30;
 }
 
 function updateLights(){

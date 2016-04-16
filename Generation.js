@@ -1,5 +1,5 @@
 var FLAT_FLOOR = { yHeight: 0, clipHeight: -1 };
-
+var HOLE = {yHeight: -1, clipHeight: -1};
 
 var level1Queue = {
 	index: 0,
@@ -9,11 +9,9 @@ var level1Queue = {
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
+		HOLE,
 		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
+		HOLE,
 		FLAT_FLOOR,
 		{
 			yHeight: -1,
@@ -25,11 +23,15 @@ var level1Queue = {
 		},
 		{
 			yHeight: 0,
-			clipHeight: -1
+			clipHeight: 0
 		},
 		{
 			yHeight: 0,
-			clipHeight: -1
+			clipHeight: 1
+		},
+		{
+			yHeight: 0,
+			clipHeight: 2
 		},
 		{
 			yHeight: 0,
@@ -37,32 +39,17 @@ var level1Queue = {
 		},
 		{
 			yHeight: 1,
-			clipHeight: 1
+			clipHeight: 2
 		},
 		{
-			yHeight: 2,
-			clipHeight: .5
+			yHeight: 1,
+			clipHeight: 3
 		},
 		{
-			yHeight: 0,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: -1
+			yHeight: 1,
+			clipHeight: 2
 		}
+		
 	]
 }
 
@@ -71,30 +58,35 @@ var queuedGeometry = [];
 
 var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 
-function generateChunk(){
+function generateChunk(transition){
+	if(transition == null) transition = true;
+
 	if(level1Queue.index == level1Queue.data.length) return;
 
 	var index = level1Queue.index;
 
 	if(level1Queue.data[index].yHeight != -1){
-		floorGeometry = new THREE.BoxGeometry(1, 5, 2);
+		var floorGeometry = new THREE.BoxGeometry(1, 5, 2);
+		floorGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 2.5, 0) );
 		var floor = new THREE.Mesh(floorGeometry, material)
-		floor.position.y = 0;
+		floor.position.y = level1Queue.data[index].yHeight - 6.5;
 		floor.position.x = index;
 		floor.scale.set(1, .01, 1);
 		scene.add(floor);
 
-		queuedGeometry.push({obj: floor, exp: 5, transition: true});
+		queuedGeometry.push({obj: floor, exp: 5, transition: transition});
 	}
 
 	if(level1Queue.data[index].clipHeight != -1){
-		var wall = new THREE.Mesh(floorGeometry, material)
-		wall.position.y = 0
+		var wallGeometry = new THREE.BoxGeometry(1, 5, 2);
+		wallGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, -2.5, 0) );
+		var wall = new THREE.Mesh(wallGeometry, material);
+		wall.position.y = level1Queue.data[index].clipHeight + 5 - 1.5;
 		wall.position.x = index;
-		floor.scale.set(1, 0, 1);
+		wall.scale.set(1, .01, 1);
 		scene.add(wall);
 
-		queuedGeometry.push({obj: wall, exp: 5, transition: true});
+		queuedGeometry.push({obj: wall, exp: 5, transition: transition});
 	}
 
 	level1Queue.index++;
@@ -103,7 +95,7 @@ function generateChunk(){
 
 function generateChunks(length){
 	for(var i = 0; i < length; i++){
-		generateChunk();
+		generateChunk(false);
 	}
 }
 
@@ -111,15 +103,12 @@ function updateGeneration(){
 	for(var i = queuedGeometry.length - 1; i >= 0; i--){
 		if(queuedGeometry[i].obj.scale.y >= 1 || !queuedGeometry[i].transition ){
 			queuedGeometry[i].obj.scale.y = 1;
-			queuedGeometry[i].obj.position.y = -queuedGeometry[i].exp;
 			queuedGeometry.splice(i, 1);
 			continue;
 		}
 
 		if(queuedGeometry[i].obj.scale.y <= 1){
-
-			queuedGeometry[i].obj.scale.y += 0.01;
-			queuedGeometry[i].obj.position.y = -queuedGeometry[i].exp * queuedGeometry[i].obj.scale.y;
+			queuedGeometry[i].obj.scale.y += 0.1;
 		}
 			
 	}

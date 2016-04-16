@@ -48,11 +48,8 @@ function update(){
 
 function animate(){
 	stats.begin();
-
 	requestAnimationFrame(animate);
 	update();
-
 	renderer.render(scene, getCamera());
-
 	stats.end();
 }

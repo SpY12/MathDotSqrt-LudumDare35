@@ -12,6 +12,10 @@ var player = {
 		this.camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 		this.camera.position.set(0, 0, 5);
 
+		var light = new THREE.PointLight(0xFFFFFF, .5, 10, 1);
+		scene.add(light);
+
+		this.obj.add(light);
 	},
 
 	update: function (){
@@ -28,12 +32,6 @@ var player = {
 		if(!keyboard.pressed("d") && !keyboard.pressed("a")) this.setTargetSize(1);
 		
 		this.setScale(this.scale);
-		this.updateCamera();
-	},
-
-	updateCamera: function(){
-		//console.log(this.camera.position);
-		//this.camera.position.x = this.obj.position.x;
 	},
 
 	setTargetSize: function(size){
