@@ -51,7 +51,7 @@ function animate(){
 
 	requestAnimationFrame(animate);
 	update();
-	renderer.render(scene, camera);
+	renderer.render(scene, getCamera());
 
 	stats.end();
 }

@@ -12,7 +12,8 @@
 	<script src="http://upload3dprint.com/ludumdare/stats.js-master/build/stats.min.js"></script>
 	<script src="http://upload3dprint.com/ludumdare/js/controls/FlyControls.js"></script>
 
-	<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+	<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+
 	<script src="Util.js"></script>
 	<script src="Player.js"></script>
 	<script src="Audio.js"></script>
@@ -41,8 +42,11 @@
 
 	<script type="text/javascript">
 		if (window.WebGLRenderingContext) {
+
 			init();
 			animate();
+			
+			
 		} else {
 			alert("You need WebGL to play this lit game");
 			window.location = "http://get.webgl.org";
