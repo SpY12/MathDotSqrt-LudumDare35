@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>Ludum Dare 35</title>
+
+	<meta charset=utf-8>
+
+	<script src="http://upload3dprint.com/ludumdare/three.js-master/build/three.js"></script>
+	<script src="http://upload3dprint.com/ludumdare/three.js-master/build/three.min.js"></script>
+	<script src="http://upload3dprint.com/ludumdare/three.js-master/build/THREEx.KeyboardState.js"></script>
+	<script src="http://upload3dprint.com/ludumdare/stats.js-master/build/stats.min.js"></script>
+	<script src="http://upload3dprint.com/ludumdare/js/controls/FlyControls.js"></script>
+
+	<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+
+	<!--
+	<script src="http://upload3dprint.com/ludumdare/Player.js"></script>
+	<script src="http://upload3dprint.com/ludumdare/Level.js"></script>
+	<script src='http://upload3dprint.com/ludumdare/Game.js'></script>
+	
+	-->
+
+	<script src="Player.js"></script>
+	<script src="Audio.js"></script>
+	<script src="Level.js"></script>
+	<script src="Game.js"></script>
+
+	
+
+	<style>
+
+		body {
+			margin: 0;
+			overflow: hidden;
+		}
+		canvas {
+			width: 100%;
+			height: 100%;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<audio id="audioElement" src="http://upload3dprint.com/javascript/res/audio/music/onigiri.mp3"  onload = "start()"/>
+
+	<script type="text/javascript">
+		if (window.WebGLRenderingContext) {
+
+			function start(){
+				console.log("TEST");
+			}
+			
+			
+		} else {
+			alert("You need WebGL to play this lit game");
+			window.location = "http://get.webgl.org";
+		}
+	</script>
+</body>
+</html>
