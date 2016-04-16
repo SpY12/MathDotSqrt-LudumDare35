@@ -54,7 +54,7 @@ function updateLevel(){
 	if(tick % 60 == 0) generateChunk();
 	tick++;
 
-	p.camera.position.x += 1 / 60;
+	//p.camera.position.x += 1 / 60;
 }
 
 function updateLights(){
