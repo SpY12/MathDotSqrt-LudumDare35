@@ -3,7 +3,7 @@ function addScore(name, score){
 	queueScores++;
 	setTimeout(function(){
 		$(document).ready(function(){
-			$.aJax({
+			$.ajax({
 				url: "php/savescores.php",
 				type: "POST",
 				data: {name: name, score: score},
