@@ -6,7 +6,10 @@ var level1Queue = {
 	data:[
 		FLAT_FLOOR,
 		FLAT_FLOOR,
-		FLAT_FLOOR,
+		{
+			yHeight: 0,
+			clipHeight: 2
+		},
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		HOLE,
@@ -120,6 +123,7 @@ var level1Queue = {
 
 
 var queuedGeometry = [];
+var loadedGeometry = [];
 
 var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
 
@@ -168,14 +172,14 @@ function updateGeneration(){
 	for(var i = queuedGeometry.length - 1; i >= 0; i--){
 		if(queuedGeometry[i].obj.scale.y >= 1 || !queuedGeometry[i].transition ){
 			queuedGeometry[i].obj.scale.y = 1;
+			loadedGeometry.push(queuedGeometry[i].obj);
 			queuedGeometry.splice(i, 1);
 			continue;
 		}
 
 		if(queuedGeometry[i].obj.scale.y <= 1){
 			queuedGeometry[i].obj.scale.y += 0.1;
-		}
-			
+		}	
 	}
 }
 

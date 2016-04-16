@@ -23,7 +23,7 @@ function init(){
 	document.body.appendChild( stats.domElement );
 
 	renderer = new THREE.WebGLRenderer({
-		antialias: true
+		antialias: false
 	});
 
 	renderer.setSize(WIDTH, HEIGHT);
