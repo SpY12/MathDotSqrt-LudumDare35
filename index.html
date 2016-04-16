@@ -12,7 +12,6 @@
 	<script src="http://upload3dprint.com/ludumdare/three.js-master/build/THREEx.KeyboardState.js"></script>
 	<script src="http://upload3dprint.com/ludumdare/stats.js-master/build/stats.min.js"></script>
 	<script src="http://upload3dprint.com/ludumdare/js/controls/FlyControls.js"></script>
-	<script src="http://upload3dprint.com/ludumdare/js/loaders/FontLoader.js"></script>
 
 	<script src="res/model/fonts/helvetiker_regular.typeface.js"></script>
 	<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
@@ -26,12 +25,24 @@
 	<script src="Game.js"></script>
 
 	
+	<div class="loader"></div>
 
 	<style>
+
+		.loader {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: url('C:/Users/Spy/Documents/GitHub/MathDotSqrt-LudumDare35/res/img/loading/loading.gif') 50% 50% no-repeat;
+		}
 
 		body {
 			margin: 0;
 			overflow: hidden;
+			color: 0;
 		}
 		canvas {
 			width: 100%;
@@ -48,12 +59,22 @@
 	<script type="text/javascript">
 		if (window.WebGLRenderingContext) {
 			function start(){
-				init();
-				animate();
+				setTimeout(function() {
+					$(".loader").fadeOut("slow");
+					init();
+					animate();
+				}, 5000);
 			}
+			$(function() {
+    			var randomColors = ["orange", "green", "steelblue", "indigo", "violet", "black"];
+    			var color = randomColors[randomInt(0, randomColors.length - 1)];
+    			$("body").css({
+        			backgroundColor: color
+    			});
+    			$("#colorcode").text(randomColors);
+			});
 			window.onload = start;
-			
-		} else {
+		} else {a
 			alert("You need WebGL to play this lit game");
 			window.location = "http://get.webgl.org";
 		}
