@@ -44,6 +44,9 @@ function updateLevel(){
 
 	p.obj.position.x += 1 / 30;
 	p.camera.position.x += 1 / 30;
+
+	lights.point1.position.x +=  1 / 30;
+	lights.point2.position.x += 1 / 30;
 }
 
 function updateLights(){

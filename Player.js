@@ -3,6 +3,8 @@ var player = {
 	scale: null,
 	camera: null,
 	targetSize: 1,
+	ground: false,
+
 	constructor: function(){
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		var material = new THREE.MeshPhongMaterial({color: 0xFF00FF});
@@ -43,7 +45,8 @@ var player = {
 		this.obj.position.y = scale / 2 - 1;
 	},
 
-	collision: function(){
+	collision: function(geometry1, geometry2){
+		
 		return false;
 	},
 

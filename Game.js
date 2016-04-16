@@ -1,7 +1,8 @@
 var WIDTH, HEIGHT;
+var DELTA;
 var scene, camera, renderer;
 var clock, stats;
-var camera;
+
 function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
@@ -46,10 +47,22 @@ function update(){
 	updateLevel();
 }
 
+var count = 0;
+
 function animate(){
-	stats.begin();
-	requestAnimationFrame(animate);
-	update();
-	renderer.render(scene, getCamera());
-	stats.end();
+	DELTA = clock.getDelta();
+	
+    setTimeout(function() {
+        stats.begin();
+        requestAnimationFrame(animate);
+        update();
+    	renderer.render(scene, getCamera());
+    	stats.end();
+    }, 1000 / 120);
+	
+
+    
+
+	
+	
 }
