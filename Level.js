@@ -13,10 +13,14 @@ function initLevel(){
 
 	generateLevel();
 
+	p.obj.position.x = 5;
+	p.camera.position.x = 5;
+
 }
 var tick = 0;
 function generateLevel(){
 	//generateFloor();
+	//generateChunks(10);
 	generateLight();
 }
 
@@ -30,31 +34,17 @@ function generateLight(){
 	scene.add(lights.point2);
 }
 
-function generateFloor(){
-	var geometry = new THREE.BoxGeometry(18, 5, 2);
-	var material = new THREE.MeshLambertMaterial({
-		color: 0xFFFFFF
-	});
-	var floor = new THREE.Mesh(geometry, material);
-	floor.position.y = -4;
-
-	var geometry = new THREE.BoxGeometry(1, 5, 2);
-	var wall = new THREE.Mesh(geometry, material);
-	wall.position.y = 2;
-
-	scene.add(floor);
-	scene.add(wall);
-}
 
 function updateLevel(){
 	p.update();
 	updateAudio();
 	updateLights();
-
+	updateGeneration();
 	if(tick % 60 == 0) generateChunk();
 	tick++;
 
-	//p.camera.position.x += 1 / 60;
+	p.obj.position.x += 1 / 600;
+	p.camera.position.x += 1 / 600;
 }
 
 function updateLights(){
