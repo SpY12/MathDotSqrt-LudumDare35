@@ -14,18 +14,18 @@ function initLevel(){
 	generateLevel();
 
 }
-
+var tick = 0;
 function generateLevel(){
-	generateFloor();
+	//generateFloor();
 	generateLight();
 }
 
 function generateLight(){
-	lights.point1 = new THREE.PointLight(0xFF0000, .5, 10, .1);
+	lights.point1 = new THREE.PointLight(0xFF0000, .5, 10, 1);
 	lights.point1.position.set(5, 0, 2);
 	scene.add(lights.point1);
 
-	lights.point2 = new THREE.PointLight(0xFF00FF, .5, 10, .1);
+	lights.point2 = new THREE.PointLight(0xFF00FF, .5, 10, 1);
 	lights.point2.position.set(-5, 0, 2);
 	scene.add(lights.point2);
 }
@@ -38,7 +38,12 @@ function generateFloor(){
 	var floor = new THREE.Mesh(geometry, material);
 	floor.position.y = -4;
 
+	var geometry = new THREE.BoxGeometry(1, 5, 2);
+	var wall = new THREE.Mesh(geometry, material);
+	wall.position.y = 2;
+
 	scene.add(floor);
+	scene.add(wall);
 }
 
 function updateLevel(){
@@ -46,8 +51,10 @@ function updateLevel(){
 	updateAudio();
 	updateLights();
 
-	p.obj.position.x = Math.sin(clock.getElapsedTime()) * 4.5;
-	p.camera.position.x = Math.sin(clock.getElapsedTime()) * 4.5;
+	if(tick % 60 == 0) generateChunk();
+	tick++;
+
+	p.camera.position.x += 1 / 60;
 }
 
 function updateLights(){

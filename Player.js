@@ -1,13 +1,13 @@
 var player = {
 	obj: null,
-	size: null,
+	scale: null,
 	camera: null,
 	targetSize: 1,
 	constructor: function(){
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		var material = new THREE.MeshPhongMaterial({color: 0xFF00FF});
 		this.obj = new THREE.Mesh(geometry, material);
-		this.obj.position.y = -2;
+		this.obj.position.y = 0;
 
 		this.camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 		this.camera.position.set(0, 0, 5);
@@ -15,18 +15,19 @@ var player = {
 	},
 
 	update: function (){
-		if(this.targetSize > this.size){
-			this.size += 0.2;
+		if(this.targetSize > this.scale){
+			this.scale += 0.2;
 		}
-		if(this.targetSize < this.size){
-			this.size -= 0.2;
+		if(this.targetSize < this.scale){
+			this.scale -= 0.2;
 		}
 
 		if(keyboard.pressed("space")) this.obj.rotation.z += 0.1;
-		if(keyboard.pressed("up")) this.setTargetSize(2);
-		if(keyboard.pressed("down")) this.setTargetSize(.5);
-
-		this.setScale(this.size);
+		if(keyboard.pressed("d")) this.setTargetSize(2);
+		if(keyboard.pressed("a")) this.setTargetSize(.5);
+		if(!keyboard.pressed("d") && !keyboard.pressed("a")) this.setTargetSize(1);
+		
+		this.setScale(this.scale);
 		this.updateCamera();
 	},
 
@@ -39,9 +40,9 @@ var player = {
 		this.targetSize = size;
 	},
 
-	setScale: function(size){
-		this.obj.scale.set(size, size, size);
-		this.obj.position.y = size / 2 - 1.5;
+	setScale: function(scale){
+		this.obj.scale.set(scale, scale, scale);
+		this.obj.position.y = scale / 2 - 1;
 	},
 
 	collision: function(){
