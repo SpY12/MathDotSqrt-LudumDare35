@@ -13,3 +13,7 @@ function initAudio(){
 
 	audioElement.play();
 }
+
+function updateAudio(){
+	analyser.getByteFrequencyData(frequencyData);
+}

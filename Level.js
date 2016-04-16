@@ -11,4 +11,5 @@ function initLevel(){
 
 function updateLevel(){
 	p.update();
+	updateAudio();
 }
