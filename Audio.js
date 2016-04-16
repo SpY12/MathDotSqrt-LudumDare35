@@ -11,6 +11,7 @@ function initAudio(){
     audioElement.controls = true;
     audioElement.loop = true;
     audioElement.autoplay = true;
+    audioElement.type = type="audio/wav";
     audioElement.crossOrigin = "anonymous";
 
 	audioSrc = audioCtx.createMediaElementSource(audioElement);
