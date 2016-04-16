@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 $db = "officialhosting_topscores";//Your database name
 $dbu = "officialhosting";//Your database username
 $dbp = "&fXnbLhPtAq2YGJU";//Your database users' password
@@ -21,6 +22,17 @@ if(isset($_POST['name']) && isset($_POST['score'])) {
         //echo 'There was a problem saving your score. Please try again later.';
      }
 }
+
+$sql = "SELECT * FROM $tbl_name ORDER BY date_time DESC";
+$result = mysql_query($sql);
+$records = array();
+
+while($rows=mysql_fetch_array($result)){
+    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']); //Move this to new php file with a handler every 30 secs or 1 min
+}
+ 
+file_put_contents("data.json", json_encode($records)); //def add a timeout on this nigga
+
 mysql_close($dblink);//Close off the MySQL connection to save resources.
 header('Location: index.html');
 exit;

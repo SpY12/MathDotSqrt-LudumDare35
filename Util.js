@@ -1,14 +1,15 @@
 function addScore(name, score){
 	var queueScores = 0;
 	queueScores++;
+	console.log("test")
 	setTimeout(function(){
 		$.ajax({
-			url: "php/savescores.php",
+			url: "savescores.php",
 			type: "POST",
-			data: {name: name, score: score},
+			data: { name: name, score: score },
 			cache: false,
-			success: function(response){
-				$('#scoreCallback'.html(response));
+			success: function(response) {
+				$('#fromAjax').html(response);
 			}
 		}).done(function(){
 			queueScores--;
@@ -17,7 +18,7 @@ function addScore(name, score){
 }
 
 function getDataJSON(){
-	$.getJSON("php/data.json", function(data){
+	$.getJSON("data.json", function(data){
 		$.each(data, function(k, val){
 			console.log(k + " | " + val);
 		})
