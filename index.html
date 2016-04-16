@@ -39,13 +39,17 @@
 </head>
 <body>
 
-	<audio id="audioElement" src="res/audio/music/auckland.wav" />
+	<!--<audio id="audioElement" src="http://upload3dprint.com/ludumdare/res/audio/music/homo.mp3" />-->
 
 	<script type="text/javascript">
 		if (window.WebGLRenderingContext) {
-
-			init();
-			animate();
+			function start(){
+				init();
+				animate();
+			}
+			window.onload = start;
+			
+			
 			
 			
 		} else {

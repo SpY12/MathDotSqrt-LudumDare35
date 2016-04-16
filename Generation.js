@@ -56,7 +56,11 @@ function generateChunk(){
 		scene.add(wall);
 	}
 
-	level1Queue.index++;	
+	level1Queue.index++;
+
+}
+
+function generateChunks(length){
 
 }
 
