@@ -6,13 +6,13 @@ function initAudio(){
 
 	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	
-	var audioElement = new Audio();
-    audioElement.src = 'http://upload3dprint.com/ludumdare/res/audio/music/auckland.wav';
-    audioElement.controls = true;
-    audioElement.loop = true;
-    audioElement.autoplay = false;
-    audioElement.type ="audio/wav";
-    audioElement.crossOrigin = "anonymous";
+	var audioElement = document.getElementById('audioElement');
+    // audioElement.src = 'http://upload3dprint.com/ludumdare/res/audio/music/auckland.wav';
+    // audioElement.controls = true;
+    // audioElement.loop = true;
+    // audioElement.autoplay = true;
+    // audioElement.type ="audio/wav";
+    // audioElement.crossOrigin = "anonymous";
 
 	audioSrc = audioCtx.createMediaElementSource(audioElement);
 	analyser = audioCtx.createAnalyser();
@@ -20,8 +20,6 @@ function initAudio(){
 	// Bind our analyser to the media element source.
 	audioSrc.connect(analyser);
 	audioSrc.connect(audioCtx.destination);
-
-	audioElement.play();
 }
 
 function updateAudio(){

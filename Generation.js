@@ -32,7 +32,7 @@ var level1Queue = {
 		},
 		{
 			yHeight: -1,
-			clipHeight: 0
+			clipHeight: 4
 		},
 		{
 			yHeight: 1,
