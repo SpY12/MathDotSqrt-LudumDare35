@@ -30,14 +30,14 @@ function getDataJSON(){
 	})
 }
 
-function endGame(){
+function deathScreen(){
 	//location.href = "http://www.jellotime.com";
 
 	createText("You died!", 10, getCamera().position.x, getCamera().position.y, 100);
 	createText("Your score is: " + getScore(), 10, getCamera().position.x, getCamera().position.y - 10, 100);
 
-	createText("Play Again", 10, getCamera().position.x, getCamera().position.y - 20, 100)
-	createText("Submit Score", 10, getCamera().position.x, getCamera().position.y - 30, 100)
+	createText("Play Again", 10, getCamera().position.x, getCamera().position.y - 20, 100);
+	createText("Submit Score", 10, getCamera().position.x, getCamera().position.y - 30, 100);
 }
 
 function randomInt(min, max){
