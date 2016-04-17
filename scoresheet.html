@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title>Your Score</title>
+
+	<header name = "Access-Control-Allow-Origin" value = "*" />
+
+	<meta charset=utf-8>
+
+	<script src='https://code.jquery.com/jquery-2.0.3.min.js'></script>
+
+	<style>
+
+		h1 {
+    		left: 0;
+    		line-height: 20%;
+   			margin-top: 0%;
+    		position: absolute;
+    		text-align: center;
+    		top: 5%;
+    		width: 100%;
+		}
+
+		h2 {
+    		left: 0;
+    		line-height: 20%;
+   			margin-top: 0%;
+    		position: absolute;
+    		text-align: center;
+    		top: 15%;
+    		width: 100%;
+		}
+
+		#submit {
+			left: 0;
+    		line-height: 20%;
+   			margin-top: 0%;
+    		position: absolute;
+    		text-align: center;
+    		top: 25%;
+    		width: 100%;
+		}
+
+		body{
+			background-color: gray 
+		}
+	</style>
+
+	<h1> Your score: </h1>
+
+	<h2> You ranked: </h2>
+
+	<div id="submit">
+		<form action="savescores.php" method="post">
+			Name: <input type="text" name="name"><br>
+		<input type="submit">
+		</form>
+	</div>
+
+</head>
+<body>
+	<script type="text/javascript">
+		
+	</script>
+</body>
+</html>
