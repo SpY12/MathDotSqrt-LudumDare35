@@ -6,94 +6,6 @@ var level1Queue = {
 	data:[
 		FLAT_FLOOR,
 		FLAT_FLOOR,
-		FLAT_FLOOR,{
-			yHeight: 0,
-			clipHeight: 2
-		},
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		{
-			yHeight: -1,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: -1
-		},
-		{
-			yHeight: 0,
-			clipHeight: 0
-		},
-		{
-			yHeight: 0,
-			clipHeight: 1
-		},
-		{
-			yHeight: 0,
-			clipHeight: 2
-		},
-		{
-			yHeight: 0,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		{
-			yHeight: 1,
-			clipHeight: 2
-		},
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
 		HOLE,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
@@ -102,9 +14,6 @@ var level1Queue = {
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		HOLE,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
@@ -112,9 +21,23 @@ var level1Queue = {
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
-		HOLE,
 		FLAT_FLOOR,
-		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
 		FLAT_FLOOR
 		
 	]
@@ -124,7 +47,7 @@ var level1Queue = {
 var queuedGeometry = [];
 var loadedGeometry = [];
 
-var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF});
+var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe: true});
 
 function generateChunk(transition){
 	if(transition == null) transition = true;
@@ -149,7 +72,7 @@ function generateChunk(transition){
 		var wallGeometry = new THREE.BoxGeometry(1, 5, 2);
 		wallGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, -2.5, 0) );
 		var wall = new THREE.Mesh(wallGeometry, material);
-		wall.position.y = level1Queue.data[index].clipHeight + 5 - 1.5;
+		wall.position.y = level1Queue.data[index].clipHeight + level1Queue.data[index].yHeight + 5 - 1.5;
 		wall.position.x = index;
 		wall.scale.set(1, .01, 1);
 		scene.add(wall);

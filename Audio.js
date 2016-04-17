@@ -7,11 +7,11 @@ function initAudio(){
 	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	
 	var audioElement = new Audio();
-    audioElement.src = 'res/audio/music/auckland.wav';
+    audioElement.src = 'http://upload3dprint.com/ludumdare/res/audio/music/auckland.wav';
     audioElement.controls = true;
     audioElement.loop = true;
     audioElement.autoplay = false;
-    audioElement.type = type="audio/wav";
+    audioElement.type ="audio/wav";
     audioElement.crossOrigin = "anonymous";
 
 	audioSrc = audioCtx.createMediaElementSource(audioElement);
