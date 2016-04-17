@@ -1,7 +1,7 @@
 var loader = new THREE.JSONLoader();
 	
 
-var URL{
+var URL = {
 	arrow: "http://upload3dprint.com/ludumdare/res/model/arrow.js"
 }
 

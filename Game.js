@@ -3,7 +3,7 @@ var DELTA;
 var scene, camera, renderer;
 var clock, stats;
 
-var debug = false;
+var debug = true;
 
 function init(){
 	WIDTH = window.innerWidth;
@@ -13,6 +13,10 @@ function init(){
 	camera.position.z = 5;
 
 	if(!debug) initLevel();
+
+
+	generateVoidParticles();
+
 
 	clock = new THREE.Clock(true);
 
@@ -27,7 +31,7 @@ function init(){
 	renderer = new THREE.WebGLRenderer({
 		antialias: true
 	});
-
+	renderer.setClearColor(0);
 	renderer.setSize(WIDTH, HEIGHT);
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
@@ -48,7 +52,9 @@ function onWindowResize(){
 }
 
 function update(){
-	updateLevel();
+	if(!debug) updateLevel();
+
+	camera.rotation.y += 0.01;
 }
 
 var count = 0;
@@ -60,6 +66,6 @@ function animate(){
     requestAnimationFrame(animate);
     update();
 	if(!debug) renderer.render(scene, getCamera());
-	else renderer.renderer(scene, camera);
+	else renderer.render(scene, camera);
 	stats.end();
 }
