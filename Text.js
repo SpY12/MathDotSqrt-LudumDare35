@@ -22,5 +22,7 @@ function createText(text, size, x, y, z){
 
 	text.position.set( -0.5 * textWidthLength + x, -0.5 * textWidthHeight + y, z );
 
+	text.rotation.y = Math.PI;
+
 	scene.add(text);
 }

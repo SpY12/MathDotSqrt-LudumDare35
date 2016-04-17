@@ -54,12 +54,12 @@ var player = {
 		if(this.camera.position.x - this.obj.position.x > 5 && this.isAlive){ 
 			soundEffects.death();
 			this.isAlive = false;
+			this.camera.rotation.y = Math.PI;
 		}
 		if(!this.isAlive){
 			this.camera.rotation.y += 0.01;
 
 			if(this.camera.rotation.y >= Math.PI){
-				endGame();
 			}
 			return;
 		}
