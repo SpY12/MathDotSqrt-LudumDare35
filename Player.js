@@ -53,31 +53,23 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 
-		if((this.camera.position.x - this.obj.position.x > 4  || this.obj.position.y < -10) && this.isAlive){ 
-			soundEffects.death();
-			this.isAlive = false;
-			deathScreen();
-		}
-		if(!this.isAlive){
-			if(this.camera.rotation.y >= Math.PI){
-				
-			}
-			else this.camera.rotation.y += 0.01;
-			return;
-		}
-
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
+		if(keyboard.pressed("w") && this.up) this.obj.position.y += 0.11;
+		if(keyboard.pressed("s") && this.down) this.obj.position.y -= 0.11;
+		if(keyboard.pressed("a") && this.left) this.obj.position.x -= 0.11;
+		if(keyboard.pressed("d") && this.right) this.obj.position.x += 0.11;
+
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
 
-		if(this.down || this.velY > 0) this.velY -= this.gravity;
+		if((this.down && this.velY != 0) || this.velY > 0) this.velY -= this.gravity;
 		else this.velY = 0;
 
 		this.obj.position.y += this.velY;
 
-		if(this.right) this.obj.position.x += 1 / 10;
-		this.camera.position.x += 1 / 10;
+		//if(this.right) this.obj.position.x += 1 / 10;
+		this.camera.position.x = this.obj.position.x;
 
 
 		if(this.targetSize > this.scale){

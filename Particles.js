@@ -1,5 +1,6 @@
 
 function generateVoidParticles(){
+	console.log("Particles");
 	var particleCount = 1000;
 	var particles = new THREE.Geometry();
 	

@@ -3,7 +3,7 @@ var DELTA;
 var scene, camera, renderer;
 var clock, stats;
 
-var debug = true;
+var debug = false;
 
 function init(){
 	WIDTH = window.innerWidth;
@@ -14,8 +14,9 @@ function init(){
 
 	if(!debug) initLevel();
 
-
-	generateVoidParticles();
+	//loadSmallSpikes();
+	//scene.add(new THREE.AmbientLight(0xFFFFFF));
+	//generateVoidParticles();
 
 
 	clock = new THREE.Clock(true);
@@ -54,7 +55,7 @@ function onWindowResize(){
 function update(){
 	if(!debug) updateLevel();
 
-	camera.rotation.y += 0.01;
+	//camera.rotation.y += 0.01;
 }
 
 var count = 0;

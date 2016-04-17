@@ -1,8 +1,5 @@
 var p;
-var lights = {
-	point1: null,
-	point2: null
-};
+
 
 
 function initLevel(){//biggy
@@ -11,49 +8,26 @@ function initLevel(){//biggy
 	scene.add(p.obj);
 	initAudio();
 
-	generateLevel();
+	var Ambient = new THREE.AmbientLight(0x404040);
+	scene.add(Ambient);
 
-	p.obj.position.x = 5;
-	p.camera.position.x = 5;
-}
-var tick = 0;
-function generateLevel(){
+	p.obj.position.x = 0;
+	p.camera.position.x = 0;
+	p.camera.position.y = 1;
+
 	generateChunks(10);
-	generateLight();
 }
 
-function generateLight(){
-	lights.point1 = new THREE.PointLight(0xFF0000, .5, 10, 1);
-	lights.point1.position.set(5, 0, 2);
-	scene.add(lights.point1);
-
-	lights.point2 = new THREE.PointLight(0xFF00FF, .5, 10, 1);
-	lights.point2.position.set(-5, 0, 2);
-	scene.add(lights.point2);
-}
-
+var tick = 0;
 
 function updateLevel(){
 	p.update();
 	updateAudio();
-	updateLights();
-	updateGeneration();
-	if(tick % 10 == 0) generateChunk(true);
+
+	if(tick % 10 == 0) generateChunk();
+
 	tick++;
-
-	// p.obj.position.x += 1 / 30;
-	// p.camera.position.x += 1 / 30;
-
-	lights.point1.position.x +=  1 / 10;
-	lights.point2.position.x += 1 / 10;
-}
-
-function updateLights(){
-	if(frequencyData[500] >= 100){
-		lights.point1.color.setHSL(lights.point1.color.getHSL().h + .01, .7, .5);
-		lights.point2.color.setHSL(lights.point2.color.getHSL().h + .01, .7, .5);
-
-	}
+	updateGeneration();
 }
 
 function getCamera(){

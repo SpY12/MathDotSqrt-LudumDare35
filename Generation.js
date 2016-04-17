@@ -1,327 +1,144 @@
-var FLAT_FLOOR = { yHeight: 0, clipHeight: -1 };
-var HOLE = {yHeight: -1, clipHeight: -1};
+var ZERO_FLOOR = {
+	heights: [0, 3],
+	meshes: [
+		floorMesh,
+		ceilingMesh
+	],
 
-var level1Queue = {
+	entHeights: [0], 
+	ents: [
+		groundSpike
+	],
+}
+
+var levelQueue = {
 	index: 0,
 	data:[
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		{
-			yHeight: 0,
-			clipHeight: 3
-		},
-		{
-			yHeight: -1,
-			clipHeight: 4
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		{
-			yHeight: 2,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		HOLE,
-		HOLE,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		{
-			yHeight: 2,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		HOLE,
-		HOLE,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		{
-			yHeight: 2,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		HOLE,
-		HOLE,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		{
-			yHeight: 2,
-			clipHeight: 2
-		},
-		{
-			yHeight: 1,
-			clipHeight: 3
-		},
-		HOLE,
-		HOLE,
-		HOLE,
-		FLAT_FLOOR,
-		FLAT_FLOOR,
-		FLAT_FLOOR
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR
 	]
 }
 
+var material = new THREE.MeshLambertMaterial({
+	color: 0xFFFFFF, 
+	wireframe: false
+});
+
+var entMaterial = new THREE.MeshLambertMaterial({
+	color: 0xFF7733,
+	transparent: true,
+	opacity: .5
+});
+
+function floorMesh(index, height){
+	var meshHeight = 8;
+
+	var geometry = new THREE.BoxGeometry(1, meshHeight + height, 2);
+	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, (meshHeight + height) / 2, 0));
+
+	var mesh = new THREE.Mesh(geometry, material);
+	mesh.position.x = index;
+	mesh.position.y = -meshHeight;
+	cube = new THREE.BoxHelper( mesh );
+	cube.material.color.set( 0x00ff00 );
+	scene.add( cube );
+
+	mesh.scale.set(1, .01, 1);
+
+	scene.add(mesh);
+	
+	return mesh;
+}
+
+function ceilingMesh(index, height){
+	var meshHeight = 8;
+
+	var geometry = new THREE.BoxGeometry(1, meshHeight - height, 2);
+	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -(meshHeight - height) / 2, 0));
+
+	var mesh = new THREE.Mesh(geometry, material);
+	mesh.position.x = index;
+	mesh.position.y = meshHeight;
+
+	cube = new THREE.BoxHelper( mesh );
+	cube.material.color.set( 0x00ff00 );
+	scene.add( cube );
+
+	mesh.scale.set(1, .01, 1);
+
+	scene.add(mesh);
+	return mesh;
+}
+
+function groundSpike(index, height){
+	var geometry = new THREE.BoxGeometry(.5, .5, .5);
+	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
+
+	var mesh = new THREE.Mesh(geometry, entMaterial);
+	mesh.position.x = index;
+	mesh.position.y = height;
+
+	var frame = new THREE.WireframeHelper( mesh );
+	frame.material.color.set( 0x00ff00 );
+	scene.add( frame );
+
+	scene.add(mesh);
+}
 
 var queuedGeometry = [];
 var loadedGeometry = [];
 
-var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe: false});
+var queuedEnts = [];
+var loadedEnts = [];
 
 function generateChunk(transition){
 	if(transition == null) transition = true;
 
-	if(level1Queue.index == level1Queue.data.length) return;
+	var index = levelQueue.index;
+	if(index == levelQueue.data.length) return;
 
-	var index = level1Queue.index;
+	var obj = levelQueue.data[index];
+	for(var i = 0; i < obj.meshes.length; i++){
+		var mesh = obj.meshes[i](index, obj.heights[i]);
+		if(!transition){
+			mesh.scale.set(1, 1, 1);
+			loadedGeometry.push(mesh);
+			continue;
+		}
 
-	if(level1Queue.data[index].yHeight != -1){
-		var floorGeometry = new THREE.BoxGeometry(1, 5, 2);
-		floorGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, 2.5, 0) );
-		var floor = new THREE.Mesh(floorGeometry, material)
-		floor.position.y = level1Queue.data[index].yHeight - 6.5;
-		floor.position.x = index;
-		floor.scale.set(1, .01, 1);
-		scene.add(floor);
-
-		queuedGeometry.push({obj: floor, exp: 5, transition: transition});
+		queuedGeometry.push(mesh);
 	}
 
-	if(level1Queue.data[index].clipHeight != -1){
-		var wallGeometry = new THREE.BoxGeometry(1, 5, 2);
-		wallGeometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, -2.5, 0) );
-		var wall = new THREE.Mesh(wallGeometry, material);
-		wall.position.y = level1Queue.data[index].clipHeight + level1Queue.data[index].yHeight + 5 - 1.5;
-		wall.position.x = index;
-		wall.scale.set(1, .01, 1);
-		scene.add(wall);
+	for(var i = 0; i < obj.ents.length; i++){
+		var mesh = obj.ents[i](index, obj.entHeights[i]);
 
-		queuedGeometry.push({obj: wall, exp: 5, transition: transition});
+
 	}
 
-	level1Queue.index++;
-
+	levelQueue.index++;
 }
 
 function generateChunks(length){
@@ -330,19 +147,25 @@ function generateChunks(length){
 	}
 }
 
+
+
 function updateGeneration(){
 	for(var i = queuedGeometry.length - 1; i >= 0; i--){
-		if(queuedGeometry[i].obj.scale.y >= 1 || !queuedGeometry[i].transition ){
-			queuedGeometry[i].obj.scale.y = 1;
-			loadedGeometry.push(queuedGeometry[i].obj);
+		if(queuedGeometry[i].scale.y >= 1){
+			queuedGeometry[i].scale.y = 1;
+			loadedGeometry.push(queuedGeometry[i]);
 			queuedGeometry.splice(i, 1);
 			continue;
 		}
-
-		if(queuedGeometry[i].obj.scale.y <= 1){
-			queuedGeometry[i].obj.scale.y += 0.08;
+		
+		if(queuedGeometry[i].scale.y <= 1 ){
+			queuedGeometry[i].scale.y += 0.1 * queuedGeometry[i].scale.y / 1.9;
 		}
 			
+		
+
 	}
+
+
 }
 

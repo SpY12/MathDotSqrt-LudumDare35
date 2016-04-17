@@ -2,19 +2,25 @@ var loader = new THREE.JSONLoader();
 	
 
 var URL = {
-	arrow: "http://upload3dprint.com/ludumdare/res/model/arrow.js"
+	arrow: "http://upload3dprint.com/ludumdare/res/model/arrow.js",
+	spike: "http://upload3dprint.com/ludumdare/res/model/smallSpike.js"
 }
 
 function getModel(url){
-	return loader.load(url, function(geometry, materials){
-		var material = new THREE.MeshBasicMaterial({
-			color: 0xFF00FF
-		});
+	
+}
+
+function loadSmallSpikes(){
+	loader.load("http://upload3dprint.com/ludumdare/res/model/smallSpike.js", function(geometry, materials){
+		var material = new THREE.MultiMaterial( materials );
 
 		var mesh = new THREE.Mesh(geometry, material);
 
-		mesh.scale.set(.1, .1, .1);
+		mesh.scale.set(.05, .05, .05);
 
-		return mesh;
+		scene.add(mesh);
+		var helper = new THREE.WireframeHelper( mesh );
+		helper.material.color.set( 0x0000ff );
+		scene.add( helper );
 	});
 }
