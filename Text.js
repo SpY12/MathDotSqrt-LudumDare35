@@ -1,27 +1,26 @@
-function createText(text, x, y, z){
-	//loader.load('res/model/fonts/Pirulen_Regular.js', function(font){
-		var text3d = new THREE.TextGeometry( text, {
+function createText(text, size, x, y, z){
+	var text3d = new THREE.TextGeometry( text, {
+		size: size,
+		height: size / 4,
+		curveSegments: 2,
+		font: "helvetiker"
+	});
 
-			size: 30,
-			height: 30 / 4,
-			curveSegments: 2,
-			font: "helvetiker"
+	text3d.computeBoundingBox();
 
-		});
+	var material = new THREE.MeshBasicMaterial({
+		color: 0xFFFFFF,
+		side: THREE.DoubleSide
+	});
 
-		text3d.computeBoundingBox();
+	var text = new THREE.Mesh(text3d, material);
 
-		var material = new THREE.MeshBasicMaterial({
-			color: 0xFFFFFF,
-			side: THREE.DoubleSide
-		});
+	text3d.computeBoundingBox();
 
-		var text = new THREE.Mesh(text3d, material);
+	var textWidthLength = text3d.boundingBox.max.x - text3d.boundingBox.min.x;
+	var textWidthHeight = text3d.boundingBox.max.y - text3d.boundingBox.min.y;
 
-		text.position.x = x;
-		text.position.y = y;
-		text.position.z = z;
+	text.position.set( -0.5 * textWidthLength + x, -0.5 * textWidthHeight + y, z );
 
-		scene.add(text);
-	//});
+	scene.add(text);
 }

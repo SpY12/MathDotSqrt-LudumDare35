@@ -1,7 +1,8 @@
-function addScore(name, score){
+var score = 0;
+
+*/function addScore(name, score){
 	var queueScores = 0;
 	queueScores++;
-	console.log("test")
 	setTimeout(function(){
 		$.ajax({
 			url: "savescores.php",
@@ -15,6 +16,10 @@ function addScore(name, score){
 			queueScores--;
 		});
 	}, queueScores * 0.01);
+}*/
+
+function getScore(){
+	return score;
 }
 
 function getDataJSON(){
@@ -26,7 +31,13 @@ function getDataJSON(){
 }
 
 function endGame(){
-	location.href = "http://www.jellotime.com";
+	//location.href = "http://www.jellotime.com";
+
+	createText("You died!", 10, getCamera().position.x, getCamera().position.y, 100);
+	createText("Your score is: " + getScore(), 10, getCamera().position.x, getCamera().position.y - 10, 100);
+
+	createText("Play Again", 10, getCamera().position.x, getCamera().position.y - 20, 100)
+	createText("Submit Score", 10, getCamera().position.x, getCamera().position.y - 30, 100)
 }
 
 function randomInt(min, max){
