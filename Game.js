@@ -3,6 +3,8 @@ var DELTA;
 var scene, camera, renderer;
 var clock, stats;
 
+var debug = false;
+
 function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
@@ -10,7 +12,7 @@ function init(){
 	camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 	camera.position.z = 5;
 
-	initLevel();
+	if(!debug) initLevel();
 
 	clock = new THREE.Clock(true);
 
@@ -37,8 +39,10 @@ function onWindowResize(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
 
-	getCamera().aspect = WIDTH / HEIGHT;
-	getCamera().updateProjectionMatrix();
+	if(!debug){
+		getCamera().aspect = WIDTH / HEIGHT;
+		getCamera().updateProjectionMatrix();
+	}
 
 	renderer.setSize(WIDTH, HEIGHT);
 }
@@ -55,6 +59,7 @@ function animate(){
 	stats.begin();
     requestAnimationFrame(animate);
     update();
-	renderer.render(scene, getCamera());
+	if(!debug) renderer.render(scene, getCamera());
+	else renderer.renderer(scene, camera);
 	stats.end();
 }
