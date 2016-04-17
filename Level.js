@@ -5,7 +5,7 @@ var lights = {
 };
 
 
-function initLevel(){
+function initLevel(){//biggy
 	p = Object.create(player);
 	p.constructor();
 	scene.add(p.obj);

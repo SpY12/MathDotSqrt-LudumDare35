@@ -52,9 +52,9 @@ var count = 0;
 function animate(){
 	DELTA = clock.getDelta();
 	
-        stats.begin();
-        requestAnimationFrame(animate);
-        update();
-    	renderer.render(scene, getCamera());
-    	stats.end();
+	stats.begin();
+    requestAnimationFrame(animate);
+    update();
+	renderer.render(scene, getCamera());
+	stats.end();
 }
