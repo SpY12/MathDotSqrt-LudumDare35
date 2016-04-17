@@ -233,3 +233,5 @@ var player = {
 		this.obj.position.z += velZ;
 	}
 }
+
+var keyboard = new THREEx.KeyboardState();

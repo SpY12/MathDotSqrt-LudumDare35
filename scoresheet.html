@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html class="html" lang="en-US">
    <head>
+   	  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
       <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
       <meta name="generator" content="2015.0.0.309"/>
       <title>Home</title>
-      <link rel="stylesheet" type="text/css" href="res/css/site_global.css?20980372"/>
-      <link rel="stylesheet" type="text/css" href="res/css/index.css?3929989856" id="pagesheet"/>
+      <link rel="stylesheet" type="text/css" href="res/css/site_global.css"/>
+      <link rel="stylesheet" type="text/css" href="res/css/index.css" id="pagesheet"/>
       <style type="text/css">
-         .blast {
+       .blast {
          display: inline-block;
-         }
+        }
+        h1{
+        	font-family: Helvetica, Arial, sans-serif;
+        	font-size: 72px;
+        	padding: 0%;
+        }
       </style>
    </head>
    <body>
@@ -23,42 +29,73 @@
                </div>
                <div class="death clearfix grpelem" id="u198-4">
                   <!-- content -->
-                  <h1>YOU DIED.</h1>
+                  <h1 id="score">Score: </h1>
                </div>
             </div>
             <form class="form-grp clearfix colelem" id="widgetu79" method="post" action="savescores.php">
                <!-- none box -->
-               <div class="clearfix grpelem" id="u88-4">
-                  <!-- content -->
-                  <p>Submitting Form...</p>
-               </div>
-               <input class="submit-btn NoWrap grpelem" id="u95-17" type="submit" value="" tabindex="2"/><!-- state-based BG images -->
                <div class="fld-grp clearfix grpelem" id="widgetu90" data-required="false">
                   <!-- none box -->
                   <label class="fld-label actAsDiv clearfix grpelem" id="u92-3" for="widgetu90_input">
-                     <!-- content --><span class="actAsPara">&nbsp;</span>
                   </label>
                   <span class="fld-textarea actAsDiv clearfix grpelem" id="u93-3">
                      <!-- content -->
-                     <textarea class="wrapped-input" id="widgetu90_input" name="custom_U90" tabindex="1" rows="1" cols="30"></textarea>
+                     <textarea class="wrapped-input" id="widgetu90_input" name="custom_U90" form="score" tabindex="1" rows="1" cols="30" placeholder="Enter your name..."></textarea>
                   </span>
+                  <input class="submit-btn NoWrap grpelem" id="u95-17" type="submit" value="" tabindex="2"/>
                </div>
             </form>
             <div class="clip_frame colelem" id="u192">
                <!-- image -->
-               <img class="block" id="u192_img" src="res/img/images/name.png" alt="" width="64" height="64"/>
+               <img class="block" id="u192_img" src="res/css/name.png" alt="" width="64" height="64"/>
             </div>
             <div class="clip_frame colelem" id="u205">
                <!-- image -->
-               <img class="block" id="u205_img" src="res/img/images/699ad7a921219d203ab4e182460487598ca751aa_s2_n1.jpg" alt="" width="980" height="397"/>
+               <img class="block" id="u205_img" src="res/css/699ad7a921219d203ab4e182460487598ca751aa_s2_n1.jpg" alt="" width="980" height="397"/>
             </div>
             <div class="verticalspacer"></div>
          </div>
       </div>
       <div class="preload_images">
-         <img class="preload" src="res/img/images/u95-17-r.png" alt=""/>
-         <img class="preload" src="res/img/images/u95-17-m.png" alt=""/>
-         <img class="preload" src="res/img/images/u95-17-fs.png" alt=""/>
+         <img class="preload" src="res/css/u95-17-r.png" alt=""/>
+         <img class="preload" src="res/css/u95-17-m.png" alt=""/>
+         <img class="preload" src="res/css/u95-17-fs.png" alt=""/>
       </div>
+      <script>
+
+	    window.onload = function(){
+	      	(function (global) {
+	      		var score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
+    			document.getElementById("score").innerHTML = "Score: " + score;
+			}(window));
+	    }
+
+    	$("#widgetu79").submit(function(event) {
+      		event.preventDefault();
+        	var $form = $( this ),
+          	url = $form.attr('action');
+
+          	var name = $('#widgetu90_input').val();
+          	var score = 0;
+          	(function (global) {
+	      		score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
+			}(window));
+
+          	if(name == ""){
+          		alert("You have to enter a valid name!");
+          		return;
+          	}else if(score == null || score <= 0){
+          		alert("You have to have a valid score!");
+          		return;
+          	}
+
+  			var posting = $.post( url, { name: name, score: score});
+  			posting.done(function( data ) {
+      			$('#u198-4').remove();
+  				$('#u192').remove();
+  				$('#widgetu79').remove();
+  			});
+    	});
+    </script>
    </body>
 </html>

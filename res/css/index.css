@@ -187,22 +187,22 @@
 	margin-right: -10000px;
 	margin-top: 208px;
 	left: 335px;
-	background: url("..res/img/images/u95-17.png") no-repeat 0px 0px;
+	background: url("u95-17.png") no-repeat 0px 0px;
 }
 
 #u95-17:hover
 {
-	background: url("..res/img/images/u95-17-r.png") no-repeat 0px 0px;
+	background: url("u95-17-r.png") no-repeat 0px 0px;
 }
 
 #u95-17:active
 {
-	background: url("..res/img/images/u95-17-m.png") no-repeat 0px 0px;
+	background: url("u95-17-m.png") no-repeat 0px 0px;
 }
 
 #widgetu79.frm-sub-st #u95-17
 {
-	background: url("..res/img/images/u95-17-fs.png") no-repeat 0px 0px;
+	background: url("u95-17-fs.png") no-repeat 0px 0px;
 }
 
 #widgetu90
@@ -356,7 +356,7 @@
 {
 	width: 866px;
 	min-height: 81px;
-	color: #C4C4C4;
+	color: #ffffff;
 	font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
 	font-size: 72px;
 	padding: 6px;

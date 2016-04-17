@@ -23,16 +23,7 @@ if(isset($_POST['name']) && isset($_POST['score'])) {
      }
 }
 
-$sql="SELECT * FROM scores ORDER BY score DESC LIMIT 10";
-$result = mysql_query($sql);
-$records = array();
-
-while($rows=mysql_fetch_array($result)){
-    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']);
-}
-file_put_contents("top10Scores.json", json_encode($records));
-
-$sql = "SELECT * FROM $tbl_name ORDER BY date_time DESC";
+$sql="SELECT * FROM scores ORDER BY score";
 $result = mysql_query($sql);
 $records = array();
 
