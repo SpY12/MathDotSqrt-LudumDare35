@@ -51,6 +51,8 @@ var player = {
 	},
 
 	update: function (){
+		if(this.isAlive) score++;
+
 		if((this.camera.position.x - this.obj.position.x > 4  || this.obj.position.y < -10) && this.isAlive){ 
 			soundEffects.death();
 			this.isAlive = false;
