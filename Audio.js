@@ -10,17 +10,17 @@ var soundEffects = {
 }
 
 function initAudio(){
-	//audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	var audioElement = document.getElementById('audioElement');
 
-	//audioSrc = audioCtx.createMediaElementSource(audioElement);
-	//analyser = audioCtx.createAnalyser();
+	audioSrc = audioCtx.createMediaElementSource(audioElement);
+	analyser = audioCtx.createAnalyser();
 
-	// Bind our analyser to the media element source.
-	//audioSrc.connect(analyser);
-	//audioSrc.connect(audioCtx.destination);
+	Bind our analyser to the media element source.
+	audioSrc.connect(analyser);
+	audioSrc.connect(audioCtx.destination);
 }
 
 function updateAudio(){
-	//analyser.getByteFrequencyData(frequencyData);
+	analyser.getByteFrequencyData(frequencyData);
 }
