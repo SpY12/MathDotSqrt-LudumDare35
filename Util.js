@@ -1,6 +1,6 @@
 var score = 0;
 
-*/function addScore(name, score){
+/*function addScore(name, score){
 	var queueScores = 0;
 	queueScores++;
 	setTimeout(function(){
