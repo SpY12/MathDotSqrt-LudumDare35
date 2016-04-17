@@ -5,6 +5,19 @@ var ZERO_FLOOR = {
 		ceilingMesh
 	],
 
+	entHeights: [], 
+	ents: [
+		
+	],
+}
+
+var SPIKE_FLOOR = {
+	heights: [0, 3],
+	meshes: [
+		floorMesh,
+		ceilingMesh
+	],
+
 	entHeights: [0], 
 	ents: [
 		groundSpike
@@ -24,7 +37,7 @@ var levelQueue = {
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
+		SPIKE_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
@@ -50,7 +63,7 @@ var material = new THREE.MeshLambertMaterial({
 var entMaterial = new THREE.MeshLambertMaterial({
 	color: 0xFF7733,
 	transparent: true,
-	opacity: .5
+	opacity: 0.001
 });
 
 function floorMesh(index, height){
@@ -94,10 +107,16 @@ function ceilingMesh(index, height){
 }
 
 function groundSpike(index, height){
-	var geometry = new THREE.BoxGeometry(.5, .5, .5);
+	var geometry = new THREE.BoxGeometry(1, 1, 1);
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
 
-	var mesh = new THREE.Mesh(geometry, entMaterial);
+	var material = new THREE.MeshLambertMaterial({
+		color: 0xFF7733,
+		transparent: true,
+		opacity: 0.01
+	});
+
+	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.x = index;
 	mesh.position.y = height;
 
@@ -106,6 +125,8 @@ function groundSpike(index, height){
 	scene.add( frame );
 
 	scene.add(mesh);
+
+	return mesh;
 }
 
 var queuedGeometry = [];
@@ -134,8 +155,13 @@ function generateChunk(transition){
 
 	for(var i = 0; i < obj.ents.length; i++){
 		var mesh = obj.ents[i](index, obj.entHeights[i]);
+		if(!transition){
+			mesh.material.opacity = 1;
+			loadedEnts.push(mesh);
+			continue;
+		}
 
-
+		queuedEnts.push(mesh);
 	}
 
 	levelQueue.index++;
@@ -158,12 +184,18 @@ function updateGeneration(){
 			continue;
 		}
 		
-		if(queuedGeometry[i].scale.y <= 1 ){
-			queuedGeometry[i].scale.y += 0.1 * queuedGeometry[i].scale.y / 1.9;
-		}
-			
-		
+		queuedGeometry[i].scale.y += 0.1 * queuedGeometry[i].scale.y / 1.9;
+	}
 
+	for(var i = queuedEnts.length - 1; i >= 0; i--){
+		if(queuedEnts[i].material.opacity >= 1){
+			queuedEnts[i].material.opacity = 1;
+			loadedEnts.push(queuedEnts[i]);
+			queuedEnts.splice(i, 1);
+			continue;
+		}
+
+		queuedEnts[i].material.opacity += 0.1 * queuedEnts[i].material.opacity / 1.9;
 	}
 
 

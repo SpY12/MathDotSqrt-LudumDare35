@@ -53,6 +53,9 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 
+
+		this.collision(loadedEnts);
+		if(this.c1 || this.c2 || this.c3 || this.c4) deathScreen();
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 

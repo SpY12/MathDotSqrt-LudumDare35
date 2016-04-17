@@ -12,7 +12,8 @@ var soundEffects = {
 function initAudio(){
 	audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 	var audioElement = document.getElementById('audioElement');
-
+	audioElement.crossOrigin = 'Anonymous'
+	
 	audioSrc = audioCtx.createMediaElementSource(audioElement);
 	analyser = audioCtx.createAnalyser();
 
