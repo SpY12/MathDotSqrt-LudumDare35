@@ -6,6 +6,95 @@ var level1Queue = {
 	data:[
 		FLAT_FLOOR,
 		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		HOLE,
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		{
+			yHeight: 0,
+			clipHeight: 3
+		},
+		{
+			yHeight: -1,
+			clipHeight: 0
+		},
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		{
+			yHeight: 2,
+			clipHeight: 2
+		},
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		HOLE,
+		HOLE,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
 		HOLE,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
@@ -38,8 +127,159 @@ var level1Queue = {
 		FLAT_FLOOR,
 		FLAT_FLOOR,
 		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		{
+			yHeight: 2,
+			clipHeight: 2
+		},
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		HOLE,
+		HOLE,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		{
+			yHeight: 2,
+			clipHeight: 2
+		},
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		HOLE,
+		HOLE,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		{
+			yHeight: 2,
+			clipHeight: 2
+		},
+		{
+			yHeight: 1,
+			clipHeight: 3
+		},
+		HOLE,
+		HOLE,
+		HOLE,
+		FLAT_FLOOR,
+		FLAT_FLOOR,
 		FLAT_FLOOR
-		
 	]
 }
 
@@ -47,7 +287,7 @@ var level1Queue = {
 var queuedGeometry = [];
 var loadedGeometry = [];
 
-var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe: true});
+var material = new THREE.MeshLambertMaterial({color: 0xFFFFFF, wireframe: false});
 
 function generateChunk(transition){
 	if(transition == null) transition = true;
@@ -100,7 +340,7 @@ function updateGeneration(){
 		}
 
 		if(queuedGeometry[i].obj.scale.y <= 1){
-			queuedGeometry[i].obj.scale.y += 0.1;
+			queuedGeometry[i].obj.scale.y += 0.08;
 		}
 			
 	}

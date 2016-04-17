@@ -14,10 +14,21 @@ var player = {
 	c3: false,
 	c4: false,
 
+	c1XY: {x: null, y: null, cX: false, cY: false},
+	c2XY: {x: null, y: null, cX: false, cY: false},
+	c3XY: {x: null, y: null, cX: false, cY: false},
+	c4XY: {x: null, y: null, cX: false, cY: false},
+
+	up: true,
+	down: true,
+	left: true,
+	right: true,
+
 	velX: 0,
 	velY: 0,
 
-	gravity: .01,
+	gravity: .03,
+	friction: .01,
 
 	constructor: function(){
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -37,21 +48,28 @@ var player = {
 	},
 
 	update: function (){
+		this.collision(loadedGeometry);
+		this.ground = !this.down;
 
-		this.ground = (this.c3 || this.c4);
+		// if(keyboard.pressed("d")){
+		// 	if(this.ground) this.obj.position.x += 0.3;
 
-		if(keyboard.pressed("a") && (!this.c1)) this.obj.position.x -= 0.1;
-		if(keyboard.pressed("d") && (!this.c2)) this.obj.position.x += 0.1;
-		if(keyboard.pressed("space") && this.ground) this.velY = .2;
-		if(keyboard.pressed("shift")) this.setTargetSize(.5);
-
-		if(!this.ground)this.velY -= this.gravity;
-
-		if((!this.c3 && !this.c4) || this.velY > 0 ) this.obj.position.y += this.velY;
-		// if(keyboard.pressed("s") && (!this.c3 && !this.c4)){
-		// 	console.log("SLUT");
-		// 	this.obj.position.y -= 0.01;	
+		// 	this.velX = .3;
+		// } 
+		// if(keyboard.pressed("a")){
+		// 	if(this.ground) this.obj.position.x -= 0.3;
+		// 	this.velX = -.3;
 		// }
+		if(keyboard.pressed("space") && this.ground) this.velY = .4;
+
+		if(this.down || this.velY > 0) this.velY -= this.gravity;
+		else this.velY = 0;
+
+		this.obj.position.y += this.velY;
+
+		if(this.right) this.obj.position.x += 1 / 10;
+		this.camera.position.x += 1 / 10;
+
 
 		if(this.targetSize > this.scale){
 			this.scale += 0.2;
@@ -59,7 +77,6 @@ var player = {
 		if(this.targetSize < this.scale){
 			this.scale -= 0.2;
 		}
-		
 		this.setScale(this.scale);
 	},
 
@@ -72,25 +89,35 @@ var player = {
 		//this.obj.position.y = scale / 2 - 1;
 	},
 	collision: function(objs){
-		//4--3
-		//|  |
 		//1--2
-		var cX1 = this.obj.position.x - (this.obj.scale.z / 2);
-		var cY1 = this.obj.position.y; //- (this.obj.scale.z / 2);
+		//|  |
+		//3--4
+		var cx1 = this.obj.position.x - (this.obj.scale.z / 2);// + this.velX;
+		var cy1 = this.obj.position.y + (this.obj.scale.z);// + this.velY;
+
+		var cx2 = this.obj.position.x + (this.obj.scale.z / 2);// + this.velX;
+		var cy2 = this.obj.position.y + (this.obj.scale.z); //+ this.velY;
+
+		var cx3 = this.obj.position.x - (this.obj.scale.z / 2);// + this.velX;
+		var cy3 = this.obj.position.y;// + this.velY; //- (this.obj.scale.z / 2);
 		
-		var cX2 = this.obj.position.x + (this.obj.scale.z / 2);
-		var cY2 = this.obj.position.y;// - (this.obj.scale.z / 2);
-
-		var cX3 = this.obj.position.x + (this.obj.scale.z / 2);
-		var cY3 = this.obj.position.y + (this.obj.scale.z);
-
-		var cX4 = this.obj.position.x - (this.obj.scale.z / 2);
-		var cY4 = this.obj.position.y + (this.obj.scale.z);
+		var cx4 = this.obj.position.x + (this.obj.scale.z / 2);// + this.velX;
+		var cy4 = this.obj.position.y;// + this.velY;// - (this.obj.scale.z / 2);
 
 		this.c1 = false;
 		this.c2 = false;
 		this.c3 = false;
 		this.c4 = false;
+
+		this.c1XY = {x: null, y: null, cX: false, cY: false};
+		this.c2XY = {x: null, y: null, cX: false, cY: false};
+		this.c3XY = {x: null, y: null, cX: false, cY: false};
+		this.c4XY = {x: null, y: null, cX: false, cY: false};
+		
+		this.up = true;
+		this.down = true;
+		this.left = true;
+		this.right = true;
 
 		for(var i = 0; i < objs.length; i++){
 			if(objs[i] == null) continue;
@@ -109,19 +136,84 @@ var player = {
 			var x4 = objs[i].geometry.vertices[2].x + objs[i].position.x;
 			var y4 = objs[i].geometry.vertices[2].y + objs[i].position.y;
 
-			if(cX1 >= x1 && cX1 <= x2 && cY1 <= y1 && cY1 >= y3){
-				this.c3 = true;	
-			} 
-			if(cX2 >= x1 && cX2 <= x2 && cY2 <= y1 && cY2 >= y3){
-				this.c4 = true;
-			}
-			if(cX3 >= x3 && cX3 <= x4 && cY3 >= y3 && cY3 <= y1){
-				this.c2 = true;
-			}
-			if(cX4 >= x3 && cX4 <= x4 && cY4 >= y3 && cY4 <= y1){
+			//cXY bounding box
+			//4--3
+			//|  |
+			//2--1
+
+			if(cx1 >= x1 && cx1 <= x2 && cy1 >= y3 && cy1 <= y1){
 				this.c1 = true;
+				this.c1XY.x = x2;
+				this.c1XY.y = y3;
 			}
 
+			if(cx2 >= x1 && cx2 <= x2 && cy2 >= y3 && cy2 <= y1){
+				this.c2 = true;
+				this.c2XY.x = x1;
+				this.c2XY.y = y3;
+			}
+
+			if(cx3 >= x1 && cx3 <= x2 && cy3 >= y3 && cy3 <= y1){
+				this.c3 = true;
+				this.c3XY.x = x2;
+				this.c3XY.y = y1;
+			}
+
+			if(cx4 >= x1 && cx4 <= x2 && cy4 >= y3 && cy4 <= y1){
+				this.c4 = true;
+				this.c4XY.x = x1;
+				this.c4XY.y = y1;
+			}
+		}
+
+		if(this.c1){
+			var diffX = Math.abs(this.c1XY.x - cx1);
+			var diffY = Math.abs(this.c1XY.y - cy1);
+
+			if(diffX > diffY){
+				this.obj.position.y = this.c1XY.y - this.obj.scale.z;
+				this.up = false;
+			}
+			if(diffX < diffY){
+				this.obj.position.x = this.c1XY.x + this.obj.scale.z / 2;
+				this.left = false;
+			}
+		}
+		if(this.c2 ){
+			var diffX = Math.abs(this.c2XY.x - cx2);
+			var diffY = Math.abs(this.c2XY.y - cy2);
+			if(diffX > diffY){
+				this.obj.position.y = this.c2XY.y - this.obj.scale.z;
+				this.up = false;
+			}
+			if(diffX < diffY){
+				this.obj.position.x = this.c2XY.x - this.obj.scale.z / 2;
+				this.right = false;
+			}
+		}
+		if(this.c3){
+			var diffX = Math.abs(this.c3XY.x - cx3);
+			var diffY = Math.abs(this.c3XY.y - cy3);
+			if(diffX > diffY){
+				this.obj.position.y = this.c3XY.y;
+				this.down = false;
+			}
+			if(diffX < diffY){
+				this.obj.position.x = this.c3XY.x + this.obj.scale.z / 2;
+				this.left = false;
+			}
+		}
+		if(this.c4){
+			var diffX = Math.abs(this.c4XY.x - cx4);
+			var diffY = Math.abs(this.c4XY.y - cy4);
+			if( diffX > diffY){
+				this.obj.position.y = this.c4XY.y;
+				this.down = false;
+			}
+			if( diffX < diffY){
+				this.obj.position.x = this.c4XY.x - this.obj.scale.z / 2;
+				this.right = false;
+			}
 		}
 		return this.c1 || this.c2 || this.c3 || this.c4;
 	},

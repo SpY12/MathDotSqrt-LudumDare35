@@ -38,15 +38,14 @@ function updateLevel(){
 	updateAudio();
 	updateLights();
 	updateGeneration();
-	if(tick % 30 == 0) generateChunk(true);
+	if(tick % 10 == 0) generateChunk(true);
 	tick++;
 
 	// p.obj.position.x += 1 / 30;
 	// p.camera.position.x += 1 / 30;
 
-	// lights.point1.position.x +=  1 / 30;
-	// lights.point2.position.x += 1 / 30;
-	p.collision(loadedGeometry);
+	lights.point1.position.x +=  1 / 10;
+	lights.point2.position.x += 1 / 10;
 }
 
 function updateLights(){

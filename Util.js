@@ -26,7 +26,7 @@ function getDataJSON(){
 }
 
 function endGame(){
-	location.href = "";
+	location.href = "http://www.jellotime.com";
 }
 
 function randomInt(min, max){
