@@ -51,31 +51,22 @@ var player = {
 	},
 
 	update: function (){
-		if(this.camera.position.x - this.obj.position.x > 5 && this.isAlive){ 
+		if((this.camera.position.x - this.obj.position.x > 4  || this.obj.position.y < -10) && this.isAlive){ 
 			soundEffects.death();
 			this.isAlive = false;
-			this.camera.rotation.y = Math.PI;
+			deathScreen();
 		}
 		if(!this.isAlive){
-			this.camera.rotation.y += 0.01;
-
 			if(this.camera.rotation.y >= Math.PI){
+				
 			}
+			else this.camera.rotation.y += 0.01;
 			return;
 		}
 
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
-		// if(keyboard.pressed("d")){
-		// 	if(this.ground) this.obj.position.x += 0.3;
-
-		// 	this.velX = .3;
-		// } 
-		// if(keyboard.pressed("a")){
-		// 	if(this.ground) this.obj.position.x -= 0.3;
-		// 	this.velX = -.3;
-		// }
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
 
 		if(this.down || this.velY > 0) this.velY -= this.gravity;
