@@ -16,7 +16,7 @@ function initAudio(){
 	audioSrc = audioCtx.createMediaElementSource(audioElement);
 	analyser = audioCtx.createAnalyser();
 
-	Bind our analyser to the media element source.
+	//Bind our analyser to the media element source.
 	audioSrc.connect(analyser);
 	audioSrc.connect(audioCtx.destination);
 }

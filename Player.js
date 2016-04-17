@@ -76,7 +76,7 @@ var player = {
 
 		this.obj.position.y += this.velY;
 
-		if(this.right) this.obj.position.x += 1 / 11;
+		if(this.right) this.obj.position.x += 1 / 10;
 		this.camera.position.x += 1 / 10;
 
 
