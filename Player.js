@@ -4,6 +4,7 @@ var player = {
 	camera: null,
 	targetSize: 1,
 	ground: false,
+	isAlive: false,
 
 	//1--2
 	//|  |
@@ -31,6 +32,8 @@ var player = {
 	friction: .01,
 
 	constructor: function(){
+		this.isAlive = true;
+
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, .5, 0) );
 		var material = new THREE.MeshBasicMaterial({color: 0xFF00FF, wireframe: true});
@@ -48,6 +51,19 @@ var player = {
 	},
 
 	update: function (){
+		if(this.camera.position.x - this.obj.position.x > 5 && this.isAlive){ 
+			soundEffects.death();
+			this.isAlive = false;
+		}
+		if(!this.isAlive){
+			this.camera.rotation.y += 0.01;
+
+			if(this.camera.rotation.y >= Math.PI){
+				endGame();
+			}
+			return;
+		}
+
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
@@ -67,7 +83,7 @@ var player = {
 
 		this.obj.position.y += this.velY;
 
-		if(this.right) this.obj.position.x += 1 / 10;
+		if(this.right) this.obj.position.x += 1 / 11;
 		this.camera.position.x += 1 / 10;
 
 
