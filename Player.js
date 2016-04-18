@@ -53,7 +53,6 @@ var player = {
 
 	update: function (){
 		if(this.isAlive) score++;
-
 		
 		if(this.collision(loadedEnts)) this.obj.material.color = new THREE.Color(1, 0, 0);
 		else this.obj.material.color = new THREE.Color(0, 1, 0);
@@ -61,33 +60,39 @@ var player = {
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
+		this.velX = 1 / 10;
+
 		if(keyboard.pressed("w") && this.up) this.obj.position.y += 0.11;
 		if(keyboard.pressed("s") && this.down) this.obj.position.y -= 0.11;
-		if(keyboard.pressed("a") && this.left) this.obj.position.x -= 0.11;
-		if(keyboard.pressed("d") && this.right) this.obj.position.x += 0.11;
+		if(keyboard.pressed("a") && this.left) this.velX = -1 / 100;
+		if(keyboard.pressed("d") && this.right) this.velX =  1 / 6;
 
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
 		if(keyboard.pressed("shift")) this.setTargetSize(.5);
 
+
 		if((this.down ) || this.velY > 0) this.velY -= this.gravity;
 		else this.velY = 0;
 
+		this.obj.position.x += this.velX;
 		this.obj.position.y += this.velY;
+		this.camera.position.x += 1 / 10;
 
-		//if(this.right) this.obj.position.x += 1 / 10;
-		this.camera.position.x = this.obj.position.x;
+		//this.setTargetSize(.5);
 
-		if(this.targetSize > this.scale){
-			this.scale += 0.2;
-		}
-		if(this.targetSize < this.scale){
-			this.scale -= 0.2;
-		}
-		this.setScale(this.scale);
+		// if(this.targetSize > this.scale){
+		// 	this.scale += 0.2;
+		// }
+		// if(this.targetSize < this.scale){
+		// 	this.scale -= 0.2;
+		// }
+		this.setScale((this.obj.position.x - (this.camera.position.x - 8)) / 10);
 	},
 
 	setTargetSize: function(size){
+		if(this.targetSize)
 		this.targetSize = size;
+		 returntargetSize == size
 	},
 
 	setScale: function(scale){

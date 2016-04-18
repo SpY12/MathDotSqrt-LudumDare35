@@ -15,7 +15,7 @@ function initLevel(){//biggy
 	p.camera.position.x = 0;
 	p.camera.position.y = 1;
 
-	generateChunks(10);
+	generateChunks(20);
 }
 
 var tick = 0;
