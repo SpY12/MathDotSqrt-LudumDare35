@@ -1,3 +1,9 @@
+var material = new THREE.MeshLambertMaterial({
+	color: 0xFFFFFF, 
+	wireframe: false
+});
+
+
 function floorMesh(index, height){
 	var meshHeight = 8;
 

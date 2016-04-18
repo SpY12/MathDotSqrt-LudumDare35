@@ -6,7 +6,7 @@ THREEx.LaserCooked	= function(laserBeam, height){
 	if (height == null) height = 3;
 	this.update	= function(time){
 		
-		if(~~time % 5 != 0){
+		if(~~time % 2 != 0){
 			isUp = true;
 			object3d.scale.y = height;//Math.sin(clock.getElapsedTime());
 			sprite.scale.y = 1 / object3d.scale.y;
@@ -44,12 +44,11 @@ THREEx.LaserCooked	= function(laserBeam, height){
 
 
 	// add a point light
-	var light	= new THREE.PointLight( 0x4444ff, 10 );
-	light.intensity	= 2;
-	light.distance	= 4;
-	light.position.x= -0.05;
+	var light	= new THREE.PointLight( 0xFF0000, 10, 10, .1);
+	
+	light.position.y = -0.15;
 	this.light	= light;
-	//sprite.add(light)
+	sprite.add(light)
 
 	object3d.scale.y = 0;
 	sprite.scale.y = 0;

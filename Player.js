@@ -45,6 +45,7 @@ var player = {
 		this.camera.position.set(0, 0, 5);
 
 		var light = new THREE.PointLight(0xFFFFFF, .5, 10, 1);
+		light.position.set(1, 1, 3);
 		scene.add(light);
 
 		this.obj.add(light);
