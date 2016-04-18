@@ -1,6 +1,6 @@
 var WIDTH, HEIGHT;
 var DELTA;
-var scene, camera, renderer;
+var scene, fog, camera, renderer;
 var clock, stats;
 
 var debug = false;
@@ -13,6 +13,9 @@ function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
 	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog(0xF0F8FF, 5, 7);
+	//sscene.fog.color.setHSL( 13 / 360, 0.67, .5 );
+ 
 	camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 	camera.position.z = 5;
 
@@ -35,7 +38,7 @@ function init(){
 	renderer = new THREE.WebGLRenderer({
 		antialias: false
 	});
-	renderer.setClearColor(0);
+	renderer.setClearColor(scene.fog.color);
 	renderer.setSize(WIDTH, HEIGHT);
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;

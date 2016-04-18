@@ -1,7 +1,4 @@
-var material = new THREE.MeshLambertMaterial({
-	color: 0xFFFFFF, 
-	wireframe: false
-});
+
 
 
 function floorMesh(index, height){
@@ -12,16 +9,23 @@ function floorMesh(index, height){
 	geometry.computeBoundingBox();
 	geometry.originOffset = (meshHeight + height) / 2;
 
+	var material = new THREE.MeshLambertMaterial({
+		color: 0xFFFFFF
+	});
+
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.x = index;
 	mesh.position.y = -meshHeight;
+	
+
+	
 	cube = new THREE.BoxHelper( mesh );
-	cube.material.color.set( 0x00ff00 );
-	scene.add( cube );
+	cube.material.color = new THREE.Color(0, 0, 0).setHSL(index / 8 - ~~(index / 8), .6, .1 );
+	mesh.frame = cube;
 
-	mesh.scale.set(1, .01, 1);
-
+	scene.add(cube);
 	scene.add(mesh);
+	mesh.scale.set(1, .01, 1);
 	
 	return mesh;
 }
@@ -33,17 +37,23 @@ function ceilingMesh(index, height){
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -(meshHeight - height) / 2, 0));
 	geometry.originOffset = -(meshHeight - height) / 2;
 	geometry.computeBoundingBox()
+
+	var material = new THREE.MeshLambertMaterial({
+		color: 0xFFFFFF
+	});
+	
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.x = index;
 	mesh.position.y = meshHeight;
 
+	
 	cube = new THREE.BoxHelper( mesh );
-	cube.material.color.set( 0x00ff00 );
-	scene.add( cube );
-
+	cube.material.color = new THREE.Color(0, 0, 0).setHSL(index / 8 - ~~(index / 8), .6, .5 );
+	mesh.frame = cube;
+	scene.add(cube);
 	mesh.scale.set(1, .01, 1);
-
 	scene.add(mesh);
+
 	return mesh;
 }
 

@@ -44,7 +44,7 @@ THREEx.LaserCooked	= function(laserBeam, height){
 
 
 	// add a point light
-	var light	= new THREE.PointLight( 0xFF0000, 10, 10, .1);
+	var light	= new THREE.PointLight( 0x00BFFF, 10, 10, .1);
 	
 	light.position.y = -0.15;
 	this.light	= light;

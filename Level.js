@@ -7,6 +7,7 @@ function initLevel(){//biggy
 	p.constructor();
 	scene.add(p.obj);
 	initAudio();
+	initLights();
 
 	//var Ambient = new THREE.AmbientLight(0x404040);
 	//scene.add(Ambient);
@@ -23,7 +24,7 @@ var tick = 0;
 function updateLevel(){
 	p.update();
 	updateAudio();
-
+	updateLights();
 	if(tick % 10 == 0) generateChunk();
 
 	tick++;

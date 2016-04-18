@@ -13,10 +13,8 @@ function getDataJSON(){
 }
 
 function deathScreen(){
-	//location.href = "scoresheet.html";
-	while(true){
-		
-	}
+	location.href = "scoresheet.html";
+
 	createText("You died!", 10, getCamera().position.x, getCamera().position.y, 100);
 	createText("Your score is: " + getScore(), 10, getCamera().position.x, getCamera().position.y - 12, 100);
 

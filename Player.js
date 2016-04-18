@@ -36,7 +36,7 @@ var player = {
 
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, .5, 0) );
-		var material = new THREE.MeshBasicMaterial({color: 0xFF00FF, wireframe: false});
+		var material = new THREE.MeshLambertMaterial({color: 0xFF0000, wireframe: false});
 		this.obj = new THREE.Mesh(geometry, material);
 		
 		this.obj.position.y = 0;
@@ -44,8 +44,8 @@ var player = {
 		this.camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 		this.camera.position.set(0, 0, 5);
 
-		var light = new THREE.PointLight(0xFFFFFF, .5, 10, 1);
-		light.position.set(1, 1, 3);
+		var light = new THREE.PointLight(0xFFFFFF, .1, 5, 2);
+		light.position.set(0, .5, 0);
 		scene.add(light);
 
 		this.obj.add(light);
@@ -54,8 +54,7 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 		
-		if(this.collision(loadedEnts)) this.obj.material.color = new THREE.Color(1, 0, 0);
-		else this.obj.material.color = new THREE.Color(0, 1, 0);
+		this.collision(loadedEnts);
 
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
