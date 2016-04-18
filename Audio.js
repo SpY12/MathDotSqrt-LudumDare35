@@ -20,6 +20,7 @@ function initAudio(){
 	//Bind our analyser to the media element source.
 	audioSrc.connect(analyser);
 	audioSrc.connect(audioCtx.destination);
+
 }
 
 function updateAudio(){

@@ -77,7 +77,9 @@ function groundSpike(index, height){
 	return mesh;
 }
 
-function verticleLaser(index, height){
+function verticleLaser(index, height, length){
+	if(length == null) length = 1;
+
 	var geometry = new THREE.BoxGeometry(.5, .1, .5);
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, .1 / 2, 0));
 	geometry.originOffset = .1 / 2;
@@ -96,13 +98,8 @@ function verticleLaser(index, height){
 	scene.add(mesh);
 	
 	laserBeam = new THREEx.LaserBeam();
-	//laserBeam.object3d.rotation.z = Math.PI / 2;
 	mesh.add(laserBeam.object3d);
-	mesh.laserCooked = new THREEx.LaserCooked(laserBeam);
-
-	cube = new THREE.BoxHelper( mesh );
-	cube.material.color.set( 0x00ff00 );
-	scene.add( cube );
+	mesh.laserCooked = new THREEx.LaserCooked(laserBeam, length);
 
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x = -.2;

@@ -1,84 +1,40 @@
-var ZERO_FLOOR = {
-	heights: [0],
-	meshes: [
-		floorMesh
-	],
 
-	entHeights: [], 
-	ents: [
-	],
-}
-
-var SPIKE_FLOOR = {
-	heights: [0],
-	meshes: [
-		floorMesh
-	],
-
-	entHeights: [0], 
-	ents: [
-		groundSpike
-	],
-}
-
-var LASER_FLOOR = {
-	heights: [0, 3],
-	meshes: [
-		floorMesh,
-		ceilingMesh
-	],
-
-	entHeights: [0], 
-	ents: [
-		verticleLaser
-	],
-}
 
 var levelQueue = {
 	index: 0,
 	data:[
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
-		SPIKE_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		LASER_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		LASER_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		LASER_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		LASER_FLOOR,
-		ZERO_FLOOR,
-		LASER_FLOOR,
-		LASER_FLOOR
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(1),
+		FLOOR(1),
+		FLOOR(.5),
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR_CEILING(.5, 1.5),
+		FLOOR_CEILING(1, 2),
+		FLOOR_CEILING(1.5, 2.5),
+		FLOOR_CEILING(2, 3),
+		FLOOR_CEILING(2.5, 3.5),
+		FLOOR(2),
+		FLOOR(2),
+		FLOOR(1),
+		FLOOR(0),
+		FLOOR(0),
+		HOLE(),
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(0),
+		SPIKE_FLOOR(0),
+		FLOOR(.5),
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(0),
+		LASER_FLOOR(-1, 5),
+		FLOOR(-1),
+		LASER_FLOOR(-1, 5),
+
+
 	]
 }
 
@@ -116,7 +72,7 @@ function generateChunk(transition){
 	}
 
 	for(var i = 0; i < obj.ents.length; i++){
-		var mesh = obj.ents[i](index, obj.entHeights[i]);
+		var mesh = obj.ents[i](index, obj.entHeights[i], obj.laserHeight);
 		if(!transition){
 			mesh.material.opacity = 1;
 			loadedEnts.push(mesh);

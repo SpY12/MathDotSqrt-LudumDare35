@@ -53,9 +53,8 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 
-		this.collision(loadedEnts);
 		
-		if(this.c1 || this.c2 || this.c3 || this.c4) this.obj.material.color = new THREE.Color(1, 0, 0);
+		if(this.collision(loadedEnts)) this.obj.material.color = new THREE.Color(1, 0, 0);
 		else this.obj.material.color = new THREE.Color(0, 1, 0);
 
 		this.collision(loadedGeometry);
@@ -67,6 +66,7 @@ var player = {
 		if(keyboard.pressed("d") && this.right) this.obj.position.x += 0.11;
 
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
+		if(keyboard.pressed("shift")) this.setTargetSize(.5);
 
 		if((this.down ) || this.velY > 0) this.velY -= this.gravity;
 		else this.velY = 0;
@@ -75,8 +75,6 @@ var player = {
 
 		//if(this.right) this.obj.position.x += 1 / 10;
 		this.camera.position.x = this.obj.position.x;
-
-		this.setTargetSize(1);
 
 		if(this.targetSize > this.scale){
 			this.scale += 0.2;
