@@ -4,7 +4,10 @@ var scene, camera, renderer;
 var clock, stats;
 
 var debug = false;
-var offWeb = true;
+var offWeb = false;
+var laserBeam = null;
+var laserCooked = null;
+var cube;
 
 function init(){
 	WIDTH = window.innerWidth;
@@ -15,9 +18,9 @@ function init(){
 
 	if(!debug) initLevel();
 
-	//scene.add(new THREE.AmbientLight(0xFFFFFF));
-	//generateVoidParticles();
-
+	// laserBeam = new THREEx.LaserBeam();
+	// scene.add(laserBeam.object3d);
+	// laserCooked	= new THREEx.LaserCooked(laserBeam);
 
 	clock = new THREE.Clock(true);
 
@@ -54,6 +57,8 @@ function onWindowResize(){
 
 function update(){
 	if(!debug) updateLevel();
+	// laserCooked.update(1 / 60, clock.getElapsedTime());
+	// laserBeam.object3d.rotation.z += 0.01;
 }
 
 var count = 0;

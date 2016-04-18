@@ -65,7 +65,7 @@ var player = {
 
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
 
-		if((this.down && this.velY != 0) || this.velY > 0) this.velY -= this.gravity;
+		if((this.down ) || this.velY > 0) this.velY -= this.gravity;
 		else this.velY = 0;
 
 		this.obj.position.y += this.velY;

@@ -22,6 +22,19 @@ var SPIKE_FLOOR = {
 	],
 }
 
+var LASER_FLOOR = {
+	heights: [1, 4],
+	meshes: [
+		floorMesh,
+		ceilingMesh
+	],
+
+	entHeights: [1], 
+	ents: [
+		verticleLaser
+	],
+}
+
 var levelQueue = {
 	index: 0,
 	data:[
@@ -29,8 +42,33 @@ var levelQueue = {
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		SPIKE_FLOOR,
+		LASER_FLOOR,
 		ZERO_FLOOR,
-		SPIKE_FLOOR
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		LASER_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		LASER_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		LASER_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		LASER_FLOOR
 	]
 }
 
@@ -39,89 +77,9 @@ var material = new THREE.MeshLambertMaterial({
 	wireframe: false
 });
 
-var entMaterial = new THREE.MeshLambertMaterial({
-	color: 0xFF7733,
-	transparent: true,
-	opacity: 0.001
-});
-
-function floorMesh(index, height){
-	var meshHeight = 8;
-
-	var geometry = new THREE.BoxGeometry(1, meshHeight + height, 2);
-	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, (meshHeight + height) / 2, 0));
-	geometry.computeBoundingBox();
-	geometry.originOffset = (meshHeight + height) / 2;
-
-	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.x = index;
-	mesh.position.y = -meshHeight;
-	cube = new THREE.BoxHelper( mesh );
-	cube.material.color.set( 0x00ff00 );
-	scene.add( cube );
-
-	mesh.scale.set(1, .01, 1);
-
-	scene.add(mesh);
-	
-	return mesh;
-}
-
-function ceilingMesh(index, height){
-	var meshHeight = 8;
-
-	var geometry = new THREE.BoxGeometry(1, meshHeight - height, 2);
-	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -(meshHeight - height) / 2, 0));
-	geometry.originOffset = -(meshHeight - height) / 2;
-	geometry.computeBoundingBox()
-	var mesh = new THREE.Mesh(geometry, material);
-	mesh.position.x = index;
-	mesh.position.y = meshHeight;
-
-	cube = new THREE.BoxHelper( mesh );
-	cube.material.color.set( 0x00ff00 );
-	scene.add( cube );
-
-	mesh.scale.set(1, .01, 1);
-
-	scene.add(mesh);
-	return mesh;
-}
-
-function groundSpike(index, height){
-	var geometry;
-	if(offWeb) geometry = new THREE.BoxGeometry(1, 1, 1);
-	else geometry = spikeGeometry;
-
-	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
-	geometry.originOffset = 1/2;
-
-	var material = new THREE.MeshLambertMaterial({
-		color: 0x00FF00,
-		transparent: true,
-		opacity: 0.01
-	});
-
-	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.02, 0.01, 0.02);
-	mesh.geometry.computeBoundingBox();
-	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
-	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
-	mesh.geometry.boundingBox.min.y *= mesh.scale.y;
-	mesh.geometry.boundingBox.max.y *= mesh.scale.y;
-	mesh.position.x = index;
-	mesh.position.y = height - .5;
 
 
 
-	var frame = new THREE.WireframeHelper( mesh );
-	frame.material.color.set( 0x00ff00 );
-	scene.add( frame );
-
-	scene.add(mesh);
-
-	return mesh;
-}
 
 var queuedGeometry = [];
 var loadedGeometry = [];
@@ -192,6 +150,18 @@ function updateGeneration(){
 		queuedEnts[i].material.opacity += 0.1 * queuedEnts[i].material.opacity / 1.9;
 	}
 
+	for(var i = 0; i < loadedEnts.length; i++){
+		if(loadedEnts[i].name == "laser"){
+			loadedEnts[i] = updateLaser(loadedEnts[i])
+		}
+		
+	}
 
+}
+
+function updateLaser(obj){
+	obj.laserCooked.update(clock.getElapsedTime());
+	//console.log("UPDATE");
+	return obj;
 }
 
