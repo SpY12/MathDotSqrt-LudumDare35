@@ -106,7 +106,7 @@ function ceilingSpike(index, height){
 	mesh.geometry.boundingBox.max.y = 1;//mesh.scale.y;
 
 	mesh.position.x = index;
-	mesh.position.y = height - .9 / 2;
+	mesh.position.y = height - (mesh.geometry.boundingBox.max.y + mesh.geometry.boundingBox.min.y) / 2;
 
 	mesh.name = "spike";
 	scene.add(mesh);
