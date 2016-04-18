@@ -4,6 +4,7 @@ var scene, camera, renderer;
 var clock, stats;
 
 var debug = false;
+var offWeb = true;
 
 function init(){
 	WIDTH = window.innerWidth;

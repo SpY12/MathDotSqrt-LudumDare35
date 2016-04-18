@@ -89,7 +89,10 @@ function ceilingMesh(index, height){
 }
 
 function groundSpike(index, height){
-	var geometry = spikeGeometry; //new THREE.BoxGeometry(1, 1, 1);
+	var geometry;
+	if(offWeb) geometry = new THREE.BoxGeometry(1, 1, 1);
+	else geometry = spikeGeometry;
+
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
 	geometry.originOffset = 1/2;
 
@@ -100,14 +103,16 @@ function groundSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	mesh.scale.set(0.02, 0.01, 0.02);
+	if(!offWeb) mesh.scale.set(0.02, 0.01, 0.02);
 	mesh.geometry.computeBoundingBox();
-	mesh.geometry.boundingBox.min.x *= 0.02;
-	mesh.geometry.boundingBox.max.x *= 0.02;
-	mesh.geometry.boundingBox.min.y *= 0.01;
-	mesh.geometry.boundingBox.max.y *= 0.01;
+	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
+	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
+	mesh.geometry.boundingBox.min.y *= mesh.scale.y;
+	mesh.geometry.boundingBox.max.y *= mesh.scale.y;
 	mesh.position.x = index;
 	mesh.position.y = height - .5;
+
+
 
 	var frame = new THREE.WireframeHelper( mesh );
 	frame.material.color.set( 0x00ff00 );
