@@ -5,6 +5,7 @@ var player = {
 	targetSize: 1,
 	ground: false,
 	isAlive: false,
+	isStarted: false,
 
 	//1--2
 	//|  |

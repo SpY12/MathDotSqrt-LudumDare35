@@ -1,6 +1,7 @@
 var p;
 
-
+var hasStarted = false;
+var isFalling = false;
 
 function initLevel(){//biggy
 	p = Object.create(player);
@@ -14,15 +15,31 @@ function initLevel(){//biggy
 
 	p.obj.position.x = 0;
 	p.camera.position.x = 0;
-	p.camera.position.y = 1;
+	p.camera.position.y = 10;
 
-	generateChunks(20);
+	createText("Cube Shift", 4, -12, 10, -10);
+	createText("Press Space to Play", 1.5, -9, 6, -10);
+
+
+	generateChunks(15);
 }
 
 var tick = 0;
 
 function updateLevel(){
-	p.update();
+	if(hasStarted) p.update();
+	else{
+		if(!isFalling) getCamera().position.y = Math.sin(clock.getElapsedTime()) / 10 + 10;
+		if(keyboard.pressed("space")) isFalling = true;
+	} 
+
+	if(isFalling && !hasStarted){
+		getCamera().position.y -= 0.01;
+		if(getCamera().position.y <= 1){
+			getCamera().position.y = 1;
+			hasStarted = true;
+		}
+	}
 	updateAudio();
 	updateLights();
 	if(tick % 10 == 0) generateChunk();

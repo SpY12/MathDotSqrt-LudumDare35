@@ -3,19 +3,24 @@ var THREEx = THREEx || {}
 THREEx.LaserCooked	= function(laserBeam, height){
 	// for update loop
 	var isUp = false;
+	var tick = 0;
 	if (height == null) height = 3;
 	this.update	= function(time){
 		
-		if(~~time % 2 != 0){
-			isUp = true;
+		if(tick % 30 == 0){
+			isUp = !isUp;
+		}
+
+		if(isUp){
 			object3d.scale.y = height;//Math.sin(clock.getElapsedTime());
 			sprite.scale.y = 1 / object3d.scale.y;
 		}
 		else{
-			isUp = false;
 			object3d.scale.y = 0.000;//Math.sin(clock.getElapsedTime());
 			sprite.scale.y = 1 / object3d.scale.y;
 		}
+
+		tick++;
 	}
 
 	this.isUp = function(){
@@ -44,7 +49,7 @@ THREEx.LaserCooked	= function(laserBeam, height){
 
 
 	// add a point light
-	var light	= new THREE.PointLight( 0x00BFFF, 10, 10, .1);
+	var light	= new THREE.PointLight( 0xFF0000, 1, 10, 1);
 	
 	light.position.y = -0.15;
 	this.light	= light;

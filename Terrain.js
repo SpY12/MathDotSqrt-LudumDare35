@@ -20,7 +20,7 @@ function floorMesh(index, height){
 
 	
 	cube = new THREE.BoxHelper( mesh );
-	cube.material.color = new THREE.Color(0, 0, 0).setHSL(index / 8 - ~~(index / 8), .6, .1 );
+	cube.material.color = new THREE.Color(0, 1, 0);
 	mesh.frame = cube;
 
 	scene.add(cube);
@@ -48,7 +48,7 @@ function ceilingMesh(index, height){
 
 	
 	cube = new THREE.BoxHelper( mesh );
-	cube.material.color = new THREE.Color(0, 0, 0).setHSL(index / 8 - ~~(index / 8), .6, .5 );
+	cube.material.color = new THREE.Color(0, 1, 0);//.setHSL(index / 8 - ~~(index / 8), .6, .5 );
 	mesh.frame = cube;
 	scene.add(cube);
 	mesh.scale.set(1, .01, 1);
@@ -98,8 +98,8 @@ function ceilingSpike(index, height){
 	if(offWeb) geometry = new THREE.BoxGeometry(1, 1, 1);
 	else geometry = ceilingSpikeGeometry;
 
-	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
-	geometry.originOffset = 1 / 2;
+	//geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
+	geometry.originOffset = 0;
 
 	var material = new THREE.MeshLambertMaterial({
 		color: 0x00FF00,
@@ -108,12 +108,12 @@ function ceilingSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.01, 0.01, 0.01);
+	if(!offWeb) mesh.scale.set(0.01, 0.006, 0.01);
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
-	mesh.geometry.boundingBox.min.y = -.1;//mesh.scale.y;
-	mesh.geometry.boundingBox.max.y = 1;//mesh.scale.y;
+	mesh.geometry.boundingBox.min.y = -.06;//mesh.scale.y;
+	mesh.geometry.boundingBox.max.y = .6;//mesh.scale.y;
 
 	mesh.position.x = index;
 	mesh.position.y = height - (mesh.geometry.boundingBox.max.y + mesh.geometry.boundingBox.min.y) / 2;

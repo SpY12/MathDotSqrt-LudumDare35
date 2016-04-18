@@ -4,7 +4,7 @@ var scene, fog, camera, renderer;
 var clock, stats;
 
 var debug = false;
-var offWeb = false;
+var offWeb = true;
 var laserBeam = null;
 var laserCooked = null;
 var cube;
@@ -13,8 +13,6 @@ function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog(0xF0F8FF, 5, 7);
-	//sscene.fog.color.setHSL( 13 / 360, 0.67, .5 );
  
 	camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 	camera.position.z = 5;
@@ -36,9 +34,9 @@ function init(){
 	document.body.appendChild( stats.domElement );
 
 	renderer = new THREE.WebGLRenderer({
-		antialias: false
+		antialias: true
 	});
-	renderer.setClearColor(scene.fog.color);
+	renderer.setClearColor(0);
 	renderer.setSize(WIDTH, HEIGHT);
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;

@@ -21,6 +21,9 @@ var levelQueue = {
 		FLOOR(0),
 		FLOOR(0)
 
+		
+
+
 	]
 }
 
@@ -93,7 +96,7 @@ function updateGeneration(){
 	}
 
 	for(var i = queuedEnts.length - 1; i >= 0; i--){
-		if(queuedEnts[i].material.opacity >= 1 || true){
+		if(queuedEnts[i].material.opacity >= 1){
 			queuedEnts[i].material.opacity = 1;
 			loadedEnts.push(queuedEnts[i]);
 			queuedEnts.splice(i, 1);
