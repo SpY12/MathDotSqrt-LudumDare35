@@ -28,7 +28,7 @@ var player = {
 	velX: 0,
 	velY: 0,
 
-	gravity: .03,
+	gravity: .028,
 	friction: .01,
 
 	constructor: function(){
@@ -36,7 +36,7 @@ var player = {
 
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
 		geometry.applyMatrix( new THREE.Matrix4().makeTranslation(0, .5, 0) );
-		var material = new THREE.MeshBasicMaterial({color: 0xFF00FF, wireframe: true});
+		var material = new THREE.MeshBasicMaterial({color: 0xFF00FF, wireframe: false});
 		this.obj = new THREE.Mesh(geometry, material);
 		
 		this.obj.position.y = 0;
@@ -54,7 +54,10 @@ var player = {
 		if(this.isAlive) score++;
 
 		this.collision(loadedEnts);
-		//if(this.c1 || this.c2 || this.c3 || this.c4) deathScreen();
+		
+		if(this.c1 || this.c2 || this.c3 || this.c4) this.obj.material.color = new THREE.Color(1, 0, 0);
+		else this.obj.material.color = new THREE.Color(0, 1, 0);
+
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
@@ -73,6 +76,7 @@ var player = {
 		//if(this.right) this.obj.position.x += 1 / 10;
 		this.camera.position.x = this.obj.position.x;
 
+		this.setTargetSize(1);
 
 		if(this.targetSize > this.scale){
 			this.scale += 0.2;

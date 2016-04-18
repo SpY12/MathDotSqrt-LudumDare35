@@ -18,13 +18,13 @@ THREEx.LaserBeam	= function(){
 		transparent: true
 	});
 
-	var geometry = new THREE.PlaneGeometry(1, 0.1);
+	var geometry = new THREE.PlaneGeometry(.1, 1);
 	var nPlanes	= 16;
 
 	for(var i = 0; i < nPlanes; i++){
 		var mesh = new THREE.Mesh(geometry, material)
-		mesh.position.x	= 1/2
-		mesh.rotation.x	= i/nPlanes * Math.PI
+		mesh.position.y	= 1/2
+		mesh.rotation.y	= i/nPlanes * Math.PI
 		object3d.add(mesh)
 	}
 	return

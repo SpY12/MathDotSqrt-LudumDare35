@@ -56,14 +56,15 @@ function groundSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.02, 0.01, 0.02);
+	if(!offWeb) mesh.scale.set(0.025, 0.01, 0.025);
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
-	mesh.geometry.boundingBox.min.y *= mesh.scale.y;
-	mesh.geometry.boundingBox.max.y *= mesh.scale.y;
+	mesh.geometry.boundingBox.min.y = -.1;//mesh.scale.y;
+	mesh.geometry.boundingBox.max.y = 1;//mesh.scale.y;
+
 	mesh.position.x = index;
-	mesh.position.y = height - .05;
+	mesh.position.y = height;
 
 	mesh.name = "spike";
 	scene.add(mesh);
@@ -72,7 +73,6 @@ function groundSpike(index, height){
 	frame.material.color.set( 0x00ff00 );
 	scene.add( frame );
 
-	
 
 	return mesh;
 }
@@ -96,14 +96,19 @@ function verticleLaser(index, height){
 	scene.add(mesh);
 	
 	laserBeam = new THREEx.LaserBeam();
-	laserBeam.object3d.rotation.z = Math.PI / 2;
+	//laserBeam.object3d.rotation.z = Math.PI / 2;
 	mesh.add(laserBeam.object3d);
 	mesh.laserCooked = new THREEx.LaserCooked(laserBeam);
 
 	cube = new THREE.BoxHelper( mesh );
 	cube.material.color.set( 0x00ff00 );
 	scene.add( cube );
-	
+
 	mesh.geometry.computeBoundingBox();
+	mesh.geometry.boundingBox.min.x = -.2;
+	mesh.geometry.boundingBox.max.x = .2;
+	mesh.geometry.boundingBox.min.y = 0;
+	mesh.geometry.boundingBox.max.y = 0;
+
 	return mesh;
 }

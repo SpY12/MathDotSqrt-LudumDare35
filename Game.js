@@ -4,7 +4,7 @@ var scene, camera, renderer;
 var clock, stats;
 
 var debug = false;
-var offWeb = false;
+var offWeb = true;
 var laserBeam = null;
 var laserCooked = null;
 var cube;

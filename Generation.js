@@ -10,10 +10,9 @@ var ZERO_FLOOR = {
 }
 
 var SPIKE_FLOOR = {
-	heights: [0, 3],
+	heights: [0],
 	meshes: [
-		floorMesh,
-		ceilingMesh
+		floorMesh
 	],
 
 	entHeights: [0], 
@@ -23,13 +22,13 @@ var SPIKE_FLOOR = {
 }
 
 var LASER_FLOOR = {
-	heights: [1, 4],
+	heights: [0, 3],
 	meshes: [
 		floorMesh,
 		ceilingMesh
 	],
 
-	entHeights: [1], 
+	entHeights: [0], 
 	ents: [
 		verticleLaser
 	],
@@ -42,32 +41,43 @@ var levelQueue = {
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		SPIKE_FLOOR,
+		ZERO_FLOOR,
 		SPIKE_FLOOR,
 		SPIKE_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
+		ZERO_FLOOR,
 		LASER_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
 		LASER_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
 		LASER_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
 		LASER_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
+		LASER_FLOOR,
 		LASER_FLOOR
 	]
 }
@@ -161,7 +171,9 @@ function updateGeneration(){
 
 function updateLaser(obj){
 	obj.laserCooked.update(clock.getElapsedTime());
-	//console.log("UPDATE");
+
+	if(obj.laserCooked.isUp()) obj.geometry.boundingBox.max.y = 2 * obj.laserCooked.getHeight();
+	else obj.geometry.boundingBox.max.y = 0
 	return obj;
 }
 
