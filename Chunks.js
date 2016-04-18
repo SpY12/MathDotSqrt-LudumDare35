@@ -65,6 +65,35 @@ function SPIKE_FLOOR(height){
 	}
 }
 
+function SPIKE_CEILING(height){
+	return {
+		heights: [height],
+		meshes: [
+			ceilingMesh
+		],
+
+		entHeights: [height], 
+		ents: [
+			ceilingSpike
+		],
+	}
+}
+
+function SPIKE_CEILING_FLOOR(height, gap){
+	return {
+		heights: [height, height + gap],
+		meshes: [
+			floorMesh,
+			ceilingMesh
+		],
+
+		entHeights: [height + gap], 
+		ents: [
+			ceilingSpike
+		],
+	}
+}
+
 function SPIKE_FLOOR_CEILING(height, gap){
 	return {
 		heights: [height, height + gap],

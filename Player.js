@@ -96,6 +96,7 @@ var player = {
 	},
 
 	setScale: function(scale){
+		if(scale < .25) scale =  .25;
 		this.obj.scale.set(scale, scale, scale);
 		//this.obj.position.y = scale / 2 - 1;
 	},

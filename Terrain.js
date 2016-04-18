@@ -50,10 +50,46 @@ function ceilingMesh(index, height){
 function groundSpike(index, height){
 	var geometry;
 	if(offWeb) geometry = new THREE.BoxGeometry(1, 1, 1);
-	else geometry = spikeGeometry;
+	else geometry = groundSpikeGeometry;
+
+	// geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
+	geometry.originOffset = 0;
+
+	var material = new THREE.MeshBasicMaterial({
+		color: 0x00FF00,
+		transparent: true,
+		opacity: 0.01
+	});
+
+	var mesh = new THREE.Mesh(geometry, material);
+	if(!offWeb) mesh.scale.set(0.01, 0.01, 0.01);
+	mesh.geometry.computeBoundingBox();
+	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
+	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
+	mesh.geometry.boundingBox.min.y = 0;//mesh.scale.y;
+	mesh.geometry.boundingBox.max.y = 1;//mesh.scale.y;
+
+	mesh.position.x = index;
+	mesh.position.y = height;
+
+	mesh.name = "spike";
+	scene.add(mesh);
+
+	// var frame = new THREE.WireframeHelper( mesh );
+	// frame.material.color.set( 0x00ff00 );
+	// scene.add( frame );
+
+
+	return mesh;
+}
+
+function ceilingSpike(index, height){
+	var geometry;
+	if(offWeb) geometry = new THREE.BoxGeometry(1, 1, 1);
+	else geometry = ceilingSpikeGeometry;
 
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
-	geometry.originOffset = 1/2;
+	geometry.originOffset = 1 / 2;
 
 	var material = new THREE.MeshLambertMaterial({
 		color: 0x00FF00,
@@ -62,7 +98,7 @@ function groundSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.025, 0.01, 0.025);
+	if(!offWeb) mesh.scale.set(0.01, 0.01, 0.01);
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
@@ -70,7 +106,7 @@ function groundSpike(index, height){
 	mesh.geometry.boundingBox.max.y = 1;//mesh.scale.y;
 
 	mesh.position.x = index;
-	mesh.position.y = height;
+	mesh.position.y = height - .9 / 2;
 
 	mesh.name = "spike";
 	scene.add(mesh);

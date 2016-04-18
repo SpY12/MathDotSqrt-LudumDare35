@@ -4,13 +4,11 @@ var levelQueue = {
 	index: 0,
 	data:[
 		FLOOR(0),
-		FLOOR_CEILING(0, 2),
-		FLOOR_CEILING(0, 1),
-		FLOOR_CEILING(0, 3),
-		SPIKE_FLOOR(1),
-		SPIKE_FLOOR_CEILING(-1, 5),
-		FLOOR_CEILING(0, 2),
-		FLOOR_CEILING(0, 3)
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(0),
+		FLOOR(0)
+
 	]
 }
 
@@ -66,7 +64,7 @@ function generateChunks(length){
 
 
 function updateGeneration(){
-	if(loadedGeometry[loadedGeometry.length - 1].position.x - p.obj.position.x < 5){
+	if(loadedGeometry[loadedGeometry.length - 1].position.x - p.obj.position.x < 15){
 		getRandomPreset();
 	}
 
@@ -83,7 +81,7 @@ function updateGeneration(){
 	}
 
 	for(var i = queuedEnts.length - 1; i >= 0; i--){
-		if(queuedEnts[i].material.opacity >= 1){
+		if(queuedEnts[i].material.opacity >= 1 || true){
 			queuedEnts[i].material.opacity = 1;
 			loadedEnts.push(queuedEnts[i]);
 			queuedEnts.splice(i, 1);
