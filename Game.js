@@ -14,7 +14,6 @@ function init(){
 
 	if(!debug) initLevel();
 
-	//loadSmallSpikes();
 	//scene.add(new THREE.AmbientLight(0xFFFFFF));
 	//generateVoidParticles();
 
@@ -54,8 +53,6 @@ function onWindowResize(){
 
 function update(){
 	if(!debug) updateLevel();
-
-	//camera.rotation.y += 0.01;
 }
 
 var count = 0;

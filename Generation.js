@@ -1,13 +1,11 @@
 var ZERO_FLOOR = {
-	heights: [0, 3],
+	heights: [0],
 	meshes: [
-		floorMesh,
-		ceilingMesh
+		floorMesh
 	],
 
 	entHeights: [], 
 	ents: [
-		
 	],
 }
 
@@ -32,26 +30,7 @@ var levelQueue = {
 		ZERO_FLOOR,
 		ZERO_FLOOR,
 		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		SPIKE_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR,
-		ZERO_FLOOR
+		SPIKE_FLOOR
 	]
 }
 
@@ -71,6 +50,8 @@ function floorMesh(index, height){
 
 	var geometry = new THREE.BoxGeometry(1, meshHeight + height, 2);
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, (meshHeight + height) / 2, 0));
+	geometry.computeBoundingBox();
+	geometry.originOffset = (meshHeight + height) / 2;
 
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.x = index;
@@ -91,7 +72,8 @@ function ceilingMesh(index, height){
 
 	var geometry = new THREE.BoxGeometry(1, meshHeight - height, 2);
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, -(meshHeight - height) / 2, 0));
-
+	geometry.originOffset = -(meshHeight - height) / 2;
+	geometry.computeBoundingBox()
 	var mesh = new THREE.Mesh(geometry, material);
 	mesh.position.x = index;
 	mesh.position.y = meshHeight;
@@ -107,18 +89,25 @@ function ceilingMesh(index, height){
 }
 
 function groundSpike(index, height){
-	var geometry = new THREE.BoxGeometry(1, 1, 1);
+	var geometry = spikeGeometry; //new THREE.BoxGeometry(1, 1, 1);
 	geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 1/2, 0));
+	geometry.originOffset = 1/2;
 
 	var material = new THREE.MeshLambertMaterial({
-		color: 0xFF7733,
+		color: 0x00FF00,
 		transparent: true,
 		opacity: 0.01
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
+	mesh.scale.set(0.02, 0.01, 0.02);
+	mesh.geometry.computeBoundingBox();
+	mesh.geometry.boundingBox.min.x *= 0.02;
+	mesh.geometry.boundingBox.max.x *= 0.02;
+	mesh.geometry.boundingBox.min.y *= 0.01;
+	mesh.geometry.boundingBox.max.y *= 0.01;
 	mesh.position.x = index;
-	mesh.position.y = height;
+	mesh.position.y = height - .5;
 
 	var frame = new THREE.WireframeHelper( mesh );
 	frame.material.color.set( 0x00ff00 );

@@ -53,9 +53,8 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 
-
 		this.collision(loadedEnts);
-		if(this.c1 || this.c2 || this.c3 || this.c4) deathScreen();
+		//if(this.c1 || this.c2 || this.c3 || this.c4) deathScreen();
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
@@ -128,17 +127,25 @@ var player = {
 			//1--2
 			//|  |
 			//3--4
-			var x1 = objs[i].geometry.vertices[5].x + objs[i].position.x;
-			var y1 = objs[i].geometry.vertices[5].y + objs[i].position.y;
+			var geometry = objs[i].geometry;
+			var box = geometry.boundingBox;
 
-			var x2 = objs[i].geometry.vertices[0].x + objs[i].position.x;
-			var y2 = objs[i].geometry.vertices[0].y + objs[i].position.y;
+			var width = box.max.x - box.min.x;
+			var height = box.max.y - box.min.y;
 
-			var x3 = objs[i].geometry.vertices[6].x + objs[i].position.x; 
-			var y3 = objs[i].geometry.vertices[6].y + objs[i].position.y;
+			//console.log(objs[i].position.y + geometry.originOffset);
+
+			var x1 = objs[i].position.x - width / 2;
+			var y1 = objs[i].position.y + geometry.originOffset + height / 2;
+
+			var x2 = objs[i].position.x + width / 2;
+			var y2 = objs[i].position.y + geometry.originOffset + height / 2;
+
+			var x3 = objs[i].position.x - width / 2; 
+			var y3 = objs[i].position.y + geometry.originOffset - height / 2;
 			
-			var x4 = objs[i].geometry.vertices[2].x + objs[i].position.x;
-			var y4 = objs[i].geometry.vertices[2].y + objs[i].position.y;
+			var x4 = objs[i].position.x + width / 2;
+			var y4 = objs[i].position.y + geometry.originOffset - height / 2;
 
 			//cXY bounding box
 			//4--3

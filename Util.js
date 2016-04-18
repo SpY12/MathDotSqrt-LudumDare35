@@ -14,7 +14,9 @@ function getDataJSON(){
 
 function deathScreen(){
 	//location.href = "scoresheet.html";
-
+	while(true){
+		
+	}
 	createText("You died!", 10, getCamera().position.x, getCamera().position.y, 100);
 	createText("Your score is: " + getScore(), 10, getCamera().position.x, getCamera().position.y - 12, 100);
 
@@ -23,7 +25,7 @@ function deathScreen(){
 
   	(function(global) {
 		global.localStorage.setItem("score", getScore());
-		console.log(global.localStorage.getItem("score"));
+		//console.log(global.localStorage.getItem("score"));
 	}(window));
 
 	/*if(playAgain){
