@@ -23,7 +23,16 @@ if(isset($_POST['name']) && isset($_POST['score'])) {
      }
 }
 
-$sql="SELECT * FROM scores ORDER BY score";
+$sql = "SELECT * FROM $tbl_name ORDER BY date_time DESC";
+$result = mysql_query($sql);
+$records = array();
+  
+while($rows=mysql_fetch_array($result)){
+    $records[] = array('name'=> $rows['name'], 'score'=> $rows['score']);
+}
+file_put_contents("recentScores.json", json_encode($records));
+
+$sql = "SELECT * FROM $tbl_name ORDER BY score DESC";
 $result = mysql_query($sql);
 $records = array();
 

@@ -1,101 +1,195 @@
 <!DOCTYPE html>
 <html class="html" lang="en-US">
-   <head>
-   	  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-      <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
-      <meta name="generator" content="2015.0.0.309"/>
-      <title>Home</title>
-      <link rel="stylesheet" type="text/css" href="res/css/site_global.css"/>
-      <link rel="stylesheet" type="text/css" href="res/css/index.css" id="pagesheet"/>
-      <style type="text/css">
-       .blast {
-         display: inline-block;
+
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="res/css/site_global.css" />
+    <link rel="stylesheet" type="text/css" href="res/css/index.css" id="pagesheet" />
+    <style type="text/css">
+        .blast {
+            display: inline-block;
         }
-        h1{
-        	font-family: Helvetica, Arial, sans-serif;
-        	font-size: 72px;
-        	padding: 0%;
+        
+        h1 {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 72px;
+            padding: 0%;
         }
-      </style>
-   </head>
-   <body>
-      <div class="clearfix" id="page">
-         <!-- column -->
-         <div class="position_content" id="page_position_content">
+
+        .container {
+          height: 100%;
+          width: 100%;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            overflow: hidden;
+        }
+
+        .left-half {
+            background-color: steelblue;
+            position: absolute;
+            width: 20%;
+            float: left; 
+            margin-left: 5%;
+            bottom: -5%;
+            table-layout: fixed;
+            word-wrap:break-word;
+            overflow: hidden;
+            max-height: 218px;
+        }
+
+        .right-half {
+            background-color: steelblue;
+            position: absolute;
+            width: 20%;
+            bottom: -5%;
+            margin-left: 25%;
+            overflow: auto;
+            table-layout: fixed;
+            word-wrap:break-word;
+            overflow: hidden;
+            max-height: 218px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clearfix" id="page">
+        <!-- column -->
+        <div class="position_content" id="page_position_content">
             <div class="clearfix colelem" id="pu201">
-               <!-- group -->
-               <div class="death grpelem" id="u201">
-                  <!-- custom html -->
-               </div>
-               <div class="death clearfix grpelem" id="u198-4">
-                  <!-- content -->
-                  <h1 id="score">Score: </h1>
-               </div>
+                <!-- group -->
+                <div class="death grpelem" id="u201">
+                    <!-- custom html -->
+                </div>
+                <div class="death clearfix grpelem" id="u198-4">
+                    <!-- content -->
+                    <h1 id="score">Score: </h1>
+                </div>
             </div>
             <form class="form-grp clearfix colelem" id="widgetu79" method="post" action="savescores.php">
-               <!-- none box -->
-               <div class="fld-grp clearfix grpelem" id="widgetu90" data-required="false">
-                  <!-- none box -->
-                  <label class="fld-label actAsDiv clearfix grpelem" id="u92-3" for="widgetu90_input">
+                <!-- none box -->
+                <div class="fld-grp clearfix grpelem" id="widgetu90" data-required="false">
+                    <!-- none box -->
+                    <label class="fld-label actAsDiv clearfix grpelem" id="u92-3" for="widgetu90_input">
                   </label>
-                  <span class="fld-textarea actAsDiv clearfix grpelem" id="u93-3">
+                    <span class="fld-textarea actAsDiv clearfix grpelem" id="u93-3">
                      <!-- content -->
                      <textarea class="wrapped-input" id="widgetu90_input" name="custom_U90" form="score" tabindex="1" rows="1" cols="30" placeholder="Enter your name..."></textarea>
                   </span>
-                  <input class="submit-btn NoWrap grpelem" id="u95-17" type="submit" value="" tabindex="2"/>
-               </div>
+                    <input class="submit-btn NoWrap grpelem" id="u95-17" type="submit" value="" tabindex="2" />
+                </div>
             </form>
             <div class="clip_frame colelem" id="u192">
-               <!-- image -->
-               <img class="block" id="u192_img" src="res/css/name.png" alt="" width="64" height="64"/>
+                <!-- image -->
+                <img class="block" id="u192_img" src="res/css/name.png" alt="" width="64" height="64" />
             </div>
             <div class="clip_frame colelem" id="u205">
-               <!-- image -->
-               <img class="block" id="u205_img" src="res/css/699ad7a921219d203ab4e182460487598ca751aa_s2_n1.jpg" alt="" width="980" height="397"/>
+                <!---<img class="block" id="u205_img" src="res/css/699ad7a921219d203ab4e182460487598ca751aa_s2_n1.jpg" alt="" width="980" height="397" /> -->
             </div>
+            <section class="container">
+                <div class="left-half">
+                    <table style="width:100%" id = "top10scores" height="150">
+                      <tr>
+                        <th>Top 10 Scores: </th>
+                        </tr>
+                        <tr>
+                        <th>Name: </th>
+                        <th>Points: </th>
+                        </tr>
+                    </table>
+                </div>
+                <div class="right-half">
+                    <table style="width:100%" id = "recentscores" height="150">
+                      <tr>
+                        <th>Most Recent Scores: </th>
+                        </tr>
+                        <tr>
+                        <th>Name: </th>
+                        <th>Points: </th>
+                        </tr>
+                    </table>
+                </div>
+            </section>
             <div class="verticalspacer"></div>
-         </div>
-      </div>
-      <div class="preload_images">
-         <img class="preload" src="res/css/u95-17-r.png" alt=""/>
-         <img class="preload" src="res/css/u95-17-m.png" alt=""/>
-         <img class="preload" src="res/css/u95-17-fs.png" alt=""/>
-      </div>
-      <script>
+        </div>
+    </div>
+    <div class="preload_images">
+        <img class="preload" src="res/css/u95-17-r.png" alt="" />
+        <img class="preload" src="res/css/u95-17-m.png" alt="" />
+        <img class="preload" src="res/css/u95-17-fs.png" alt="" />
+    </div>
+    <script>
+        window.onload = function() {
+            (function(global) {
+                var score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
+                document.getElementById("score").innerHTML = "Score: " + score;
+                displayScores();
+            }(window));
+        }
 
-	    window.onload = function(){
-	      	(function (global) {
-	      		var score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
-    			document.getElementById("score").innerHTML = "Score: " + score;
-			}(window));
-	    }
+        function displayScores() {
+            $.getJSON('scores.json', function(data) {
+                $.each(data, function(i, data) {
+                    var table = document.getElementById("top10scores");
+                    var row = table.insertRow(-1);
 
-    	$("#widgetu79").submit(function(event) {
-      		event.preventDefault();
-        	var $form = $( this ),
-          	url = $form.attr('action');
+                    var name = row.insertCell(0);
+                    var score = row.insertCell(1);
 
-          	var name = $('#widgetu90_input').val();
-          	var score = 0;
-          	(function (global) {
-	      		score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
-			}(window));
+                    name.innerHTML = data.name;
+                    score.innerHTML = data.score;
+                });
+            });
 
-          	if(name == ""){
-          		alert("You have to enter a valid name!");
-          		return;
-          	}else if(score == null || score <= 0){
-          		alert("You have to have a valid score!");
-          		return;
-          	}
+            $.getJSON('recentScores.json', function(data) {
+                $.each(data, function(i, data) {
+                    var table = document.getElementById("recentscores");
+                    var row = table.insertRow(-1);
 
-  			var posting = $.post( url, { name: name, score: score});
-  			posting.done(function( data ) {
-      			$('#u198-4').remove();
-  				$('#u192').remove();
-  				$('#widgetu79').remove();
-  			});
-    	});
+                    var name = row.insertCell(0);
+                    var score = row.insertCell(1);
+
+                    name.innerHTML = data.name;
+                    score.innerHTML = data.score;
+                });
+            });
+        }
+
+        $("#widgetu79").submit(function(event) {
+            event.preventDefault();
+            var $form = $(this),
+                url = $form.attr('action');
+
+            var name = $('#widgetu90_input').val();
+            var score = 0;
+            (function(global) {
+                score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
+            }(window));
+
+            if (name == "") {
+                alert("You have to enter a valid name!");
+                return;
+            } else if (score == null || score <= 0) {
+                alert("You have to have a valid score!");
+                return;
+            }
+
+            var posting = $.post(url, {
+                name: name,
+                score: score
+            });
+            posting.done(function(data) {
+                (function(global) {
+                   global.localStorage.setItem("score", 0)
+                }(window));
+                location.reload();
+            });
+        });
     </script>
-   </body>
+</body>
+
 </html>
