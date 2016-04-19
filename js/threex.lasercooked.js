@@ -7,7 +7,7 @@ THREEx.LaserCooked	= function(laserBeam, height){
 	if (height == null) height = 3;
 	this.update	= function(time){
 		
-		if(tick % 30 == 0){
+		if(tick % 45 == 15){
 			isUp = !isUp;
 		}
 

@@ -4,7 +4,7 @@ var player = {
 	camera: null,
 	targetSize: 1,
 	ground: false,
-	isAlive: false,
+	isAlive: true,
 	isStarted: false,
 
 	//1--2
@@ -28,6 +28,8 @@ var player = {
 
 	velX: 0,
 	velY: 0,
+	velZCam: 0,
+	velXCam: 1/ 10,
 
 	gravity: .028,
 	friction: .01,
@@ -55,8 +57,11 @@ var player = {
 	update: function (){
 		if(this.isAlive) score++;
 		
-		this.collision(loadedEnts);
-
+		if(this.collision(loadedEnts)) dead();
+		if(this.obj.position.y <= -5) dead();
+		if(this.camera.position.x - this.obj.position.x > 7) dead();
+		if(keyboard.pressed("shift")) dead();
+		
 		this.collision(loadedGeometry);
 		this.ground = !this.down;
 
@@ -68,7 +73,6 @@ var player = {
 		if(keyboard.pressed("d") && this.right) this.velX =  1 / 6;
 
 		if(keyboard.pressed("space") && this.ground) this.velY = .4;
-		if(keyboard.pressed("shift")) this.setTargetSize(.5);
 
 
 		if((this.down ) || this.velY > 0) this.velY -= this.gravity;
@@ -76,7 +80,7 @@ var player = {
 
 		this.obj.position.x += this.velX;
 		this.obj.position.y += this.velY;
-		this.camera.position.x += 1 / 10;
+		this.camera.position.x += this.velXCam;
 
 		//this.setTargetSize(.5);
 

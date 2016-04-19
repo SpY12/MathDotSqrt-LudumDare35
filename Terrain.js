@@ -72,7 +72,7 @@ function groundSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.01, 0.01, 0.01);
+	if(!offWeb) mesh.scale.set(0.02, 0.01, 0.02);
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
@@ -108,12 +108,12 @@ function ceilingSpike(index, height){
 	});
 
 	var mesh = new THREE.Mesh(geometry, material);
-	if(!offWeb) mesh.scale.set(0.01, 0.006, 0.01);
+	if(!offWeb) mesh.scale.set(0.02, 0.006, 0.02);
 	mesh.geometry.computeBoundingBox();
 	mesh.geometry.boundingBox.min.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.max.x *= mesh.scale.x;
 	mesh.geometry.boundingBox.min.y = -.06;//mesh.scale.y;
-	mesh.geometry.boundingBox.max.y = .6;//mesh.scale.y;
+	mesh.geometry.boundingBox.max.y = .4;//mesh.scale.y;
 
 	mesh.position.x = index;
 	mesh.position.y = height - (mesh.geometry.boundingBox.max.y + mesh.geometry.boundingBox.min.y) / 2;

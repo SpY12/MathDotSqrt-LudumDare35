@@ -4,7 +4,7 @@ var scene, fog, camera, renderer;
 var clock, stats;
 
 var debug = false;
-var offWeb = true;
+var offWeb = false;
 var laserBeam = null;
 var laserCooked = null;
 var cube;
@@ -13,7 +13,9 @@ function init(){
 	WIDTH = window.innerWidth;
 	HEIGHT = window.innerHeight;
 	scene = new THREE.Scene();
- 
+ 	scene.fog = new THREE.Fog(0, 15, 30);
+ 	scene.fog.color = new THREE.Color(0);
+
 	camera = new THREE.PerspectiveCamera(70, WIDTH / HEIGHT, .1, 1000);
 	camera.position.z = 5;
 

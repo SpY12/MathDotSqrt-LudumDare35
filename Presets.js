@@ -154,7 +154,7 @@ var presets = [
 		FLOOR(0),
 		FLOOR(0)],
 	[FLOOR(0),
-		SPIKE_FLOOR(1),
+		SPIKE_FLOOR(0),
 		SPIKE_FLOOR(-1),
 		FLOOR(0)],
 	[FLOOR(0),
@@ -184,7 +184,16 @@ var presets = [
 		SPIKE_FLOOR(0),
 		FLOOR(0),
 		FLOOR(0)],
-	[],
+	[FLOOR(0),
+		FLOOR(0),
+		HOLE(),
+		FLOOR_CEILING(1, 1),
+		HOLE(),
+		FLOOR(0),
+		FLOOR_CEILING(1, 1),
+		HOLE(),
+		FLOOR(0),
+		FLOOR(0)],
 	[],
 	[],
 	[],
@@ -194,7 +203,7 @@ var presets = [
 ];
 
 function getRandomPreset(lastHeight){
-	index = randomInt(0, presets.length);
+	index = randomInt(0, presets.length - 1);
 	for(var i = 0; i < presets[index].length; i++){
 		levelQueue.data.push(presets[index][i]);
 	}

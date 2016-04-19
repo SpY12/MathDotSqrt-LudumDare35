@@ -2,7 +2,6 @@ var lights = [];
 
 
 function initLights(){
-	console.log("init");
 	var light1 = new THREE.PointLight(0xFFFFFF, 2, 15, 1);
 	light1.position.set(9, 1, 5);
 	scene.add(light1);

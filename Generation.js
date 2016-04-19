@@ -15,11 +15,8 @@ var levelQueue = {
 		FLOOR(0),
 		FLOOR(0),
 		FLOOR(0),
-		FLOOR(0),
-		FLOOR(0),
-		FLOOR(0),
-		FLOOR(0),
 		FLOOR(0)
+
 
 		
 
@@ -79,8 +76,8 @@ function generateChunks(length){
 
 
 function updateGeneration(){
-	if(loadedGeometry[loadedGeometry.length - 1].position.x - p.obj.position.x < 10){
-		getRandomPreset();
+	if( queuedGeometry.length == 0 ){
+	 	getRandomPreset();
 	}
 
 
