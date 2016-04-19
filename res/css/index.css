@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 */
 
@@ -176,6 +176,18 @@
 	font-size: 14px;
 	font-family: Helvetica, Helvetica Neue, Arial, sans-serif;
 	font-style: normal;
+}
+
+#replay
+{
+	z-index: 15;
+	min-height: 60px;
+	width: 308px;
+	position: relative;
+	margin-right: -10000px;
+	margin-top: 208px;
+	left: 335px;
+	background: url("replay.png") no-repeat 0px 0px;
 }
 
 #u95-17

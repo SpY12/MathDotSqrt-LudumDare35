@@ -113,6 +113,7 @@
                         </tr>
                     </table>
                 </div>
+                <button style="height:40px; width:100px" onclick="reloadGame()">Replay</button>
             </section>
             <div class="verticalspacer"></div>
         </div>
@@ -123,6 +124,10 @@
         <img class="preload" src="res/css/u95-17-fs.png" alt="" />
     </div>
     <script>
+        function reloadGame(){
+            location.href = "index.html";
+        }
+
         window.onload = function() {
             (function(global) {
                 var score = (global.localStorage.getItem("score") != null) ? global.localStorage.getItem("score") : 0;
